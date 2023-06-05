@@ -1,0 +1,41 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ihrms/admin-dashboard": ["libs/ui/ihrms-admin-dashboard/src/index.ts"],
+      "@ihrms/auth": ["libs/ui/auth/src/index.ts"],
+      "@ihrms/emp-dashboard": ["libs/ui/ihrms-emp-dashboard/src/index.ts"],
+      "@ihrms/file-manager": ["libs/ui/ihrms-file-manager/src/index.ts"],
+      "@ihrms/ihrms-components": ["libs/ui/ihrms-components/src/index.ts"],
+      "@ihrms/ihrms-dynamic-forms": [
+        "libs/ui/ihrms-dynamic-forms/src/index.ts"
+      ],
+      "@ihrms/ihrms-grid": ["libs/ui/ihrms-grid/src/index.ts"],
+      "@ihrms/ihrms-gridster": ["libs/ui/ihrms-gridster/src/index.ts"],
+      "@ihrms/ihrms-highcharts": ["libs/ui/ihrms-highcharts/src/index.ts"],
+      "@ihrms/ihrms-navbar": ["libs/ui/ihrms-navbar/src/index.ts"],
+      "@ihrms/ihrms-pivot": ["libs/ui/ihrms-pivot/src/index.ts"],
+      "@ihrms/ihrms-query-builder": [
+        "libs/ui/ihrms-query-builder/src/index.ts"
+      ],
+      "@ihrms/ihrms-search": ["libs/ui/ihrms-search/src/index.ts"],
+      "@ihrms/ihrms-sidebar": ["libs/ui/ihrms-sidebar/src/index.ts"],
+      "@ihrms/shared": ["libs/ui/shared/src/index.ts"]
+    },
+    "types": ["googlemaps"]
+  },
+  "exclude": ["node_modules", "tmp"]
+}

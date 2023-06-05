@@ -1,0 +1,19 @@
+<mat-card class='mat-elevation-z10 radius-20' ihrmsUtil marginTop='20' marginLeft='10' marginRight='10' heightCalc='calc(100% - 55px)' #outerElement>
+  <mat-card-content class='scrollable dark'>
+
+    <!--Form-->
+    <ihrms-dynamic-form
+      [controls]="systemControls$ | async"
+      [flex]='24'
+      (formSubmitEvent)='formSystemSubmitEvent($event)'
+      (formObjectEvent)='formSystemObjectEvent($event)'
+      [formSubmitOutside]='formSystemSubmit$'
+    >
+    </ihrms-dynamic-form>
+    <section ihrmsUtil paddingTop='20'>
+      <button mat-raised-button color='primary' class='mid-button' (click)='onSystemAddEvent($event)'>Save Changes</button>
+    </section>
+    <!--./Form-->
+
+  </mat-card-content>
+</mat-card>

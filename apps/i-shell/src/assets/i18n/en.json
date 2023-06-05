@@ -1,0 +1,8 @@
+{
+  "login": {
+    "welcome": "Welcome",
+    "emailoruser": "Email or Username",
+    "password": "Password",
+    "select_company": "Select Company"
+  }
+}

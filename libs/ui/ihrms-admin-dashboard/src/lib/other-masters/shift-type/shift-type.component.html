@@ -1,0 +1,36 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="shiftTypeControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='shiftTypeFormSubmitEvent($event)'
+  (formObjectEvent)='shiftTypeFormObjectEvent($event)'
+  [formSubmitOutside]='formShiftTypeSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onShiftTypeSaveEvent($event)'>{{shiftTypeBtnText + ' Shift Type' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='shiftTypesData'
+  ihrmsUtil paddingTop='20'
+  [height]="400"
+  [isMultiChartCard]="true"
+  [columnFit]='shiftTypesData.columnFit'
+  [title]='shiftTypesData.shiftType'
+  [viewAll]='shiftTypesData.viewAll'
+  [rowData]='shiftTypesData.gridData?.rowData'
+  [columnDefs]='shiftTypesData.gridData?.columnDefs'
+  [pagination]="shiftTypesData.pagination"
+  [paginationPageSize]="shiftTypesData.paginationPageSize"
+  [paginationAutoPageSize]="shiftTypesData.paginationAutoPageSize"
+  [updateGridFromOutside]="shiftTypesData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onShiftTypesGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

@@ -1,0 +1,12 @@
+<ng-template #noGroup>
+  <!--*ngIf="!params?.node?.leafGroup" -->
+  <mat-checkbox [disabled]='params?.data?.readOnly !== false' [ngModel]="params.data[params.column.colId]" (ngModelChange)="onModelChange($event)"></mat-checkbox>
+</ng-template>
+
+<ng-container *ngIf='params?.data?.groups; else noGroup'>
+  <ng-container *ngFor='let chk of params?.data?.groups'>
+    <p *ngFor='let ch of chk | keyvalue' ihrmsUtil marginRight='10'>
+        <mat-checkbox [ngModel]="ch?.value" (ngModelChange)="onModelChange($event)">{{ch?.key}}</mat-checkbox>
+    </p>
+  </ng-container>
+</ng-container>

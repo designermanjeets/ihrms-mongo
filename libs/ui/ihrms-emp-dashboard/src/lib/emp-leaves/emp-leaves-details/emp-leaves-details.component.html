@@ -1,0 +1,21 @@
+<ng-container *ngIf='gridLoaded'></ng-container>
+<mat-tab-group #tabGroup [color]='"green"' [backgroundColor]='"primary"' [animationDuration]='0' (selectedTabChange)="onTabChanged($event)">
+  <mat-tab label='My Leave Requests'>
+    <mat-card *ngIf='!selectedIndex'ihrmsUtil height="100">
+    
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)='onFiltersClickHandler($event)'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsLeaveRequests
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

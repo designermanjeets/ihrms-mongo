@@ -1,0 +1,41 @@
+<section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+
+  <mat-card>
+    <mat-card-content>
+      Employees can declare their tax saving investments and expense details through the employee portal once you enable this option.
+      <p ihrmsUtil marginTop='10'> Learn how to manage investment declarations. <a>IT Declaration Help Document</a>
+        Help your employees submit IT Declaration on time. <a>Download and share</a> this IT Declaration ebook.</p>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card class='info-card text-center' *ngIf='!noComponent' ihrmsUtil marginTop='25'>
+    <mat-card-header>
+      <mat-card-title>IT Declaration is Locked</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      You are yet to enable the submission of IT Declaration for your employees through their respective portals.
+      Release IT Declaration or submit it on their behalf under Employees > Employee profile > Investments > IT Declaration.
+    </mat-card-content>
+    <mat-card-actions class='text-center'>
+      <button mat-raised-button color='primary' class='small-button'>Release IT Declaration</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <ng-container *ngIf='noComponent'>
+    <!--Form-->
+    <ihrms-dynamic-form
+      [controls]="controls$ | async"
+      [flex]='24'
+      [paddingBottomCust]="'5'"
+      (formSubmitEvent)='formSubmitEvent($event)'
+      (formObjectEvent)='formObjectEvent($event)'
+      [formSubmitOutside]='formSubmit$'
+    >
+    </ihrms-dynamic-form>
+
+    <section ihrmsUtil paddingTop='10' textAlign="right">
+      <button mat-raised-button color='primary' class='small-button' (click)='onAddEvent($event)'>Save Changes</button>
+    </section>
+    <!--./Form-->
+  </ng-container>
+</section>

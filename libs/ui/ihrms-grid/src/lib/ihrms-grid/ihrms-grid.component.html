@@ -1,0 +1,110 @@
+<section
+  *ngIf='flatItem === false; else flatGrid'
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' fxLayout='row' fxFill>
+    <div class='ihrms-card'>
+      <mat-card-header>
+        <div fxLayout='row' fxLayoutAlign='space-between center'>
+          {{title}}
+          <a (click)='onMoreClick($event)' *ngIf='viewAll !== false'>View All</a>
+          <button class="more-options" mat-icon-button [matMenuTriggerFor]="menu" aria-label="More Options">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button #matMenuItem (click)="moreOptionsClicked(matMenuItem)" mat-menu-item>
+              <mat-icon>refresh</mat-icon>
+              <span>Refresh</span>
+            </button>
+          </mat-menu>
+        </div>
+      </mat-card-header>
+      <mat-card-content ihrmsUtil marginTop='10' paddingLeft='0' paddingRight='0' fxFlex>
+        <ng-container *ngTemplateOutlet="aGridCont"></ng-container>
+      </mat-card-content>
+    </div>
+  </section>
+</section>
+
+<ng-template #flatGrid>
+  <section fxFill>
+    <h1 *ngIf="title" class="floatGrid-header" fxLayout='row' fxLayoutAlign='space-between center'>
+      {{title}}
+      <div>
+        <button ihrmsUtil marginBottom="-5" mat-button mat-raised-button color="primary" class="micro-button" (click)='onMoreClick($event)' *ngIf='viewAll !== false'>View All</button>
+        <button class="more-options" mat-icon-button [matMenuTriggerFor]="menu" aria-label="More Options">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button #matMenuItem (click)="moreOptionsClicked(matMenuItem)" mat-menu-item>
+            <mat-icon>refresh</mat-icon>
+            <span>Refresh</span>
+          </button>
+        </mat-menu>
+      </div>
+    </h1>
+    <section fxLayout='row' fxFlexFill>
+      <div fxFlex>
+        <ng-container *ngTemplateOutlet="aGridCont"></ng-container>
+      </div>
+      <p fxHide.lt-md *ngIf='illustration' fxFlex='300px' fxFlexAlign="center" ihrmsUtil textAlign='center'>
+        <img [src]="_env.assetsURL +'/'+illustration" [alt]="illustration" class='img-res'>
+      </p>
+    </section>
+  </section>
+</ng-template>
+
+<ng-template #aGridCont>
+  <section fxLayout='row' fxLayoutAlign='end start' fxLayoutGap='10px' *ngIf='addRemoveRowButtons' ihrmsUtil marginBottom='5' marginTop='-30'>
+    <button (click)='onAddRowClick($event)' mat-button mat-raised-button class='small-button' color='primary'>
+      <mat-icon>add</mat-icon> Add
+    </button>
+    <button (click)='onRemoveRowClick($event)' mat-button mat-raised-button class='small-button' color='primary'>
+      <mat-icon>remove</mat-icon> Remove
+    </button>
+  </section>
+  <ag-grid-angular
+    id="ihrmsGrid"
+    class="ag-theme-balham"
+    [ngClass]="{ 'noRowData': !rowData?.length, 'isMultiChartCard': isMultiChartCard, 'isPagination': pagination }"
+    [ngStyle]='{ "height": height + "px" }'
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [popupParent]="popupParent"
+    [enableRangeSelection]="enableRangeSelection"
+    [enableCharts]="enableCharts"
+    (gridReady)="onGridReady($event)"
+    (cellValueChanged)="onCellValueChanged($event)"
+    (firstDataRendered)="onFirstDataRendered($event)"
+    (rowClicked)='onRowClicked($event)'
+    (rowDoubleClicked)='onRowDoubleClicked($event)'
+    (rowSelected)="onRowSelected($event)"
+    (selectionChanged)="onSelectionChanged($event)"
+    (rangeSelectionChanged)="onRangeSelectionChanged($event)"
+    [rowClassRules]="rowClassRules"
+    [pagination]="pagination"
+    [isRowSelectable]="isRowSelectable"
+    [animateRows]="true"
+    [rowSelection]="rowSelection"
+    [suppressClickEdit]="suppressClickEdit"
+    [isRowMaster]="isRowMaster"
+    [paginationPageSize]="paginationPageSize"
+    [groupDefaultExpanded]="-1"
+    [paginationAutoPageSize]="paginationAutoPageSize"
+    [pinnedTopRowData]="pinnedTopRowData"
+    [pinnedBottomRowData]="pinnedBottomRowData"
+    [frameworkComponents]="frameworkComponents"
+    [singleClickEdit]="singleClickEdit"
+    [editType]="editType"
+    [stopEditingWhenCellsLoseFocus]="stopEditingWhenCellsLoseFocus"
+    [masterDetail]="masterDetail"
+    [detailCellRendererParams]="detailCellRendererParams"
+  >
+  </ag-grid-angular>
+  <ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>
+</ng-template>
+<!--
+    [editType]="editType"
+-->

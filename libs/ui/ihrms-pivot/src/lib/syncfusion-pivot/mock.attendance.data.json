@@ -1,0 +1,1041 @@
+[
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-01"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-01T05:08:48.271Z",
+                "punchOut": null
+            }
+        ],
+        "date": "2023-05-01",
+        "punchIn": "05:08",
+        "punchOut": null,
+        "totalHours": null,
+        "roster": {
+            "date": "2023-05-01T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834c7"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -232
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-01"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-01",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-02"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-02",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": {
+            "date": "2023-05-02T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834c8"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -540
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-02"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-02",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-03"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-03T06:44:27.722Z",
+                "punchOut": null
+            }
+        ],
+        "date": "2023-05-03",
+        "punchIn": "06:44",
+        "punchOut": null,
+        "totalHours": null,
+        "roster": {
+            "date": "2023-05-03T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834c9"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -136
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-03"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-03",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-04"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-04",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-04"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-04T04:37:47.795Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-04T08:43:13.427Z"
+            },
+            {
+                "punchIn": "2023-05-04T09:24:46.441Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-04T09:57:19.829Z"
+            },
+            {
+                "punchIn": "2023-05-04T09:57:52.062Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-04T12:30:16.408Z"
+            }
+        ],
+        "date": "2023-05-04",
+        "punchIn": "04:37",
+        "punchOut": "12:30",
+        "totalHours": 7.883333333333334,
+        "roster": {
+            "date": "2023-05-04T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834ca"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -263
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-05"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-05T04:30:33.598Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-05T08:31:55.382Z"
+            },
+            {
+                "punchIn": "2023-05-05T09:16:47.964Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-05T17:06:13.609Z"
+            }
+        ],
+        "date": "2023-05-05",
+        "punchIn": "04:30",
+        "punchOut": "17:06",
+        "totalHours": 12.6,
+        "roster": {
+            "date": "2023-05-05T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834cb"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 4.6,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -270
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-05"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-05",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-06"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-06",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": {
+            "date": "2023-05-06T00:00:00.000Z",
+            "shifts": [
+                "OFF"
+            ],
+            "_id": "64620a036f9ffafb6e2834cc"
+        },
+        "shiftName": "OFF",
+        "shiftMinHours": 0,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -540
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-06"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-06",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-07"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-07",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": {
+            "date": "2023-05-07T00:00:00.000Z",
+            "shifts": [
+                "OFF"
+            ],
+            "_id": "64620a036f9ffafb6e2834cd"
+        },
+        "shiftName": "OFF",
+        "shiftMinHours": 0,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -540
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-07"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-07",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-08"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-08",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-08"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-08T04:30:08.202Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": "2023-05-08T04:30:15.614Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-08T08:55:29.518Z"
+            },
+            {
+                "punchIn": "2023-05-08T09:23:13.356Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": "2023-05-09T04:30:00.000Z",
+                "punchOut": "2023-05-09T11:00:00.000Z"
+            }
+        ],
+        "date": "2023-05-08",
+        "punchIn": "04:30",
+        "punchOut": "11:00",
+        "totalHours": 30.5,
+        "roster": {
+            "date": "2023-05-08T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834ce"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 22.5,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -270
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-09"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-09",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-09"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-09T04:30:35.206Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": "2023-05-09T04:30:00.000Z",
+                "punchOut": "2023-05-09T11:00:00.000Z"
+            }
+        ],
+        "date": "2023-05-09",
+        "punchIn": "04:30",
+        "punchOut": "11:00",
+        "totalHours": 6.5,
+        "roster": {
+            "date": "2023-05-09T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834cf"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -270
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-10"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-10",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-10"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-10T04:30:36.941Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-10T08:02:42.029Z"
+            },
+            {
+                "punchIn": "2023-05-10T08:44:18.287Z",
+                "punchOut": null
+            }
+        ],
+        "date": "2023-05-10",
+        "punchIn": "04:30",
+        "punchOut": "08:02",
+        "totalHours": 3.533333333333333,
+        "roster": {
+            "date": "2023-05-10T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834d0"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -270
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-11"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-12T04:41:00.000Z",
+                "punchOut": "2023-05-12T08:13:00.000Z"
+            }
+        ],
+        "date": "2023-05-11",
+        "punchIn": "04:41",
+        "punchOut": "08:13",
+        "totalHours": 3.533333333333333,
+        "roster": {
+            "date": "2023-05-11T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834d1"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -259
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-11"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-11",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-12"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-12T04:41:18.409Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": "2023-05-12T04:41:27.117Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T04:43:06.080Z"
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T04:43:06.445Z"
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T04:43:06.314Z"
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T04:43:06.602Z"
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T04:43:06.755Z"
+            },
+            {
+                "punchIn": "2023-05-12T04:43:12.816Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T08:13:29.559Z"
+            },
+            {
+                "punchIn": null,
+                "punchOut": "2023-05-12T08:13:40.788Z"
+            },
+            {
+                "punchIn": "2023-05-12T08:58:30.424Z",
+                "punchOut": null
+            },
+            {
+                "punchIn": "2023-05-12T04:41:00.000Z",
+                "punchOut": "2023-05-12T08:13:00.000Z"
+            }
+        ],
+        "date": "2023-05-12",
+        "punchIn": "04:41",
+        "punchOut": "08:13",
+        "totalHours": 3.533333333333333,
+        "roster": {
+            "date": "2023-05-12T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834d2"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -259
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-12"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-12",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-13"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-13",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": {
+            "date": "2023-05-13T00:00:00.000Z",
+            "shifts": [
+                "OFF"
+            ],
+            "_id": "64620a036f9ffafb6e2834d3"
+        },
+        "shiftName": "OFF",
+        "shiftMinHours": 0,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -540
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-13"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-13",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-14"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-14",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-14"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-14",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": {
+            "date": "2023-05-14T00:00:00.000Z",
+            "shifts": [
+                "OFF"
+            ],
+            "_id": "64620a036f9ffafb6e2834d4"
+        },
+        "shiftName": "OFF",
+        "shiftMinHours": 0,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -540
+    },
+    {
+        "_id": {
+            "_id": "6448b9fd5bcde40dd0f68d9a",
+            "date": "2023-05-15"
+        },
+        "userId": "6448b9fd5bcde40dd0f68d9a",
+        "eCode": "EMP002",
+        "username": "Rajesh@007",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": true,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 0,
+        "swipes": [
+            {
+                "punchIn": "2023-05-16T04:39:00.000Z",
+                "punchOut": "2023-05-16T12:00:00.000Z"
+            }
+        ],
+        "date": "2023-05-15",
+        "punchIn": "04:39",
+        "punchOut": "12:00",
+        "totalHours": 7.35,
+        "roster": {
+            "date": "2023-05-15T00:00:00.000Z",
+            "shifts": [
+                "GN001"
+            ],
+            "_id": "64620a036f9ffafb6e2834d5"
+        },
+        "shiftName": "GN001",
+        "shiftMinHours": 8,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "09:00",
+        "earlyOrLateMinutes": -261
+    },
+    {
+        "_id": {
+            "_id": "6465e1b676dbc9025a943142",
+            "date": "2023-05-15"
+        },
+        "userId": "6465e1b676dbc9025a943142",
+        "eCode": "EMP003",
+        "username": "MukeshKatoch",
+        "title": null,
+        "name": null,
+        "surname": null,
+        "gender": null,
+        "isOvertimeAllowed": false,
+        "month": "2023-05-01T00:00:00.000Z",
+        "absent": 1,
+        "swipes": [],
+        "date": "2023-05-15",
+        "punchIn": null,
+        "punchOut": null,
+        "totalHours": 0,
+        "roster": null,
+        "shiftName": null,
+        "overtime": 0,
+        "shiftDefaultTimeFrom": "00:00",
+        "earlyOrLateMinutes": 0
+    }
+]

@@ -1,0 +1,428 @@
+<ng-container *ngIf="dynamicControls && control.dynamicArr; else staticControls">
+  <div [formGroup]='form' fxFlex class='pos-rel w-100'>
+    <div [formArrayName]="'dynamicArr'">
+        <div *ngFor="let ctrl of dynamicArray?.controls; let i = index; let first = first; let last = last" [formGroupName]="i"
+             fxLayout='row wrap'
+             [fxLayoutAlign]='flexAlignStart ? "start start" : "space-between start"'
+             [fxLayoutGap]='flexGap + "px"'>
+            <ng-container *ngFor="let cntrol of control.dynamicArr;">
+              <div [fxFlex]="getFlex(cntrol.fxFlex, flex)" [fxFlex.lt-md]='100' ihrmsUtil [paddingBottom]="(paddingBottomCust || '15')">
+                  <div *ngIf="cntrol.controlType === 'controlHeading' && first">
+                    <h2 [ngClass]="cntrol?.class" ihrmsUtil class='bold' *ngIf='cntrol.label'>{{cntrol.label}}</h2>
+                  </div>
+
+                  <div *ngIf="cntrol.controlType === 'divider' && last">
+                    <mat-divider ihrmsUtil marginTop="5" marginBottom="5"></mat-divider>
+                  </div>
+
+                  <div *ngIf="cntrol.controlType === 'button'"
+                       ihrmsUtil
+                       [marginTop]=cntrol.marginTop>
+                    <button type="button" mat-raised-button class='small-button' color="primary" [disabled]="form.invalid" (click)="onButtonClick($event, form, cntrol, i)">
+                      {{cntrol.label}}
+                    </button>
+                  </div>
+                  <div *ngIf="cntrol.controlType === 'addEditButton'"
+                       ihrmsUtil
+                       [marginTop]=cntrol.marginTop>
+
+                    <ng-container *ngIf="cntrol.buttonType === 'icon' && !form.disabled">
+                      <button *ngIf="cntrol.label === 'add' && last" type="button" mat-icon-button class='small-button' color="primary" [disabled]="form.invalid" (click)="onButtonClick($event, form, cntrol, i)">
+                        <mat-icon>{{cntrol.label}}</mat-icon>
+                      </button>
+                      <button *ngIf="cntrol.label === 'close' && !first && last" type="button" mat-icon-button class='small-button' color="primary" (click)="onButtonClick($event, form, cntrol, i)">
+                        <mat-icon>{{cntrol.label}}</mat-icon>
+                      </button>
+                    </ng-container>
+
+                    <button *ngIf="cntrol.buttonType !== 'icon' && cntrol.type === 'add' && last" type="button" mat-raised-button class='small-button' color="primary" [disabled]="form.invalid" (click)="onButtonClick($event, form, cntrol, i)">
+                      {{cntrol.label || 'button' | titlecase}}
+                    </button>
+                    <button *ngIf="cntrol.buttonType !== 'icon' && cntrol.type === 'remove' && !first && last" type="button" mat-raised-button class='small-button' color="primary" (click)="onButtonClick($event, form, cntrol, i)">
+                      {{cntrol.label || 'button' | titlecase}}
+                    </button>
+                  </div>
+
+                  <div *ngIf="cntrol.key" style="position: relative">
+                    <label *ngIf="cntrol?.controlType !== 'checkbox'" [attr.for]='cntrol.key'>{{cntrol.label}} <span *ngIf="labelAutoIncrement">{{i + 1}}</span>:</label>
+                    <div [ngSwitch]='cntrol.controlType'>
+
+                      <ng-container *ngSwitchCase="'hidden'">
+                        <mat-form-field>
+                          <input matInput
+                                 [id]="cntrol.key"
+                                 [formControlName]="cntrol.key"
+                                 [type]="cntrol.type"
+                                 [placeholder]="cntrol.placeholder || cntrol.label"
+                          >
+                        </mat-form-field>
+                      </ng-container>
+
+                      <mat-form-field *ngSwitchCase="'textbox'" fxFlex>
+                        <input matInput
+                               [id]="cntrol.key"
+                               [formControlName]="cntrol.key"
+                               [type]="cntrol.type"
+                               [attr.min]="cntrol.validators?.min"
+                               [placeholder]="cntrol.placeholder || cntrol.label"
+                        >
+                        <mat-hint *ngIf="cntrol?.hint">{{cntrol?.hint | titlecase}}</mat-hint>
+                      </mat-form-field>
+
+                      <section
+                        *ngSwitchCase="'checkbox'" class='flex-wrap'>
+                        <mat-checkbox
+                          ihrmsUtil
+                          [marginTop]=cntrol.marginTop
+                          fxFlex
+                          [id]="cntrol.key"
+                          [formControlName]="cntrol.key"
+                          color="primary"
+                        >
+                          {{cntrol.label}}
+                        </mat-checkbox>
+                        <small fxFlex='100' ihrmsUtil paddingLeft='25' *ngIf="control?.hint">{{control?.hint | titlecase}}</small>
+                      </section>
+
+                      <ng-container
+                        *ngSwitchCase="'radioGroup'">
+                        <mat-radio-group aria-label="Select an option"
+                                         [id]='cntrol.key'
+                                         [formControlName]="cntrol.key"
+                                         color="primary"
+                        >
+                          <mat-radio-button ihrmsUtil [marginRight]='cntrol?.marginRight || 10' [marginTop]='cntrol?.marginTop || 10' *ngFor="let opt of cntrol.options" [value]="opt.key">
+                            {{opt.value}}
+                          </mat-radio-button>
+                        </mat-radio-group>
+                      </ng-container>
+
+                      <mat-form-field class='pos-rel' *ngSwitchCase="'datepicker'" fxFlex>
+                        <input matInput
+                               [id]='cntrol.key'
+                               [formControlName]='cntrol.key'
+                               [type]='cntrol.type'
+                               [placeholder]='cntrol.placeholder || cntrol.label'
+                               [class.error]=isCustomValidator
+                               [min]="minDate"
+                               [max]="maxDate"
+                               [matDatepicker]='picker'
+                               (click)='picker.open()'>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+
+                      <mat-form-field class='pos-rel' *ngSwitchCase="'timepicker'" fxFlex>
+                        <input matInput
+                               [id]='cntrol.key'
+                               [formControlName]='cntrol.key'
+                               [type]='cntrol.type'
+                               [placeholder]='cntrol.placeholder || cntrol.label'
+                               [class.error]=isCustomValidator
+                               [min]="control.validators?.minTime"
+                               [max]="control.validators?.maxTime"
+                               [ngxTimepicker]="appendedToInput" readonly
+                               [format]="24"
+                        >
+                        <ngx-material-timepicker #appendedToInput [appendToInput]="true" [format]="24"></ngx-material-timepicker>
+                      </mat-form-field>
+
+                      <section *ngSwitchCase="'dropdown'" class="pos-rel">
+                        <a class="addMoreOpt" (click)="onMoreOptionClick($event, form, control)">{{control?.addMoreOption?.text}}</a>
+                        <mat-form-field fxFlex>
+                          <mat-select [id]='cntrol.key' [multiple]="cntrol.type === 'multiple'" [formControlName]="cntrol.key" [placeholder]='cntrol.placeholder || cntrol.label'>
+                            <mat-option *ngFor="let opt of cntrol.options" [value]="opt.key">
+                              {{opt.value}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </section>
+
+                      <mat-form-field *ngSwitchCase="'textarea'" fxFlex>
+<!--                        <mat-label>{{cntrol.label}}</mat-label>-->
+                        <textarea
+                          matInput
+                          cdkTextareaAutosize
+                          cdkAutosizeMinRows='7'
+                          [placeholder]='cntrol.placeholder || cntrol.label'
+                          [id]='cntrol.key'
+                          [formControlName]='cntrol.key'
+                        ></textarea>
+                      </mat-form-field>
+
+                      <ng-container
+                        *ngSwitchCase="'fileUpload'">
+                        <div fxLayout='row' fxLayoutAlign='start end'>
+                          <div fxFlex='80px' class='image-box' *ngIf='control.type ==="image"'>
+                            <img class='img-res' src='./assets/avtar_2.png' alt='avatar'/>
+                          </div>
+                          <div fxFlex fxLayout='row wrap' fxLayoutAlign='space-between start' class='btn-upload pos-rel'>
+                            <p fxFlex='100' *ngIf='selectedFile?.name'>{{selectedFile?.name}}</p>
+                            <!-- Display files names -->
+                            <mat-form-field fxFlex>
+                              <input matInput (click)="fileInput.click()" readonly name="name" [placeholder]='selectedFile?.name || "Select File"' />
+                            </mat-form-field>
+                            <!-- Browse Button -->
+                            <button
+                              fxFlex
+                              (click)="fileInput.click()"
+                              type='button'
+                              mat-button
+                              mat-raised-button
+                              color="accent"
+                              ihrmsUtil
+                              marginBottom='0'
+                              class='small-button'
+                            >
+                              Browse
+                            </button>
+
+                            <!-- Fetch selected filed on change -->
+                            <input
+                              #fileInput
+                              type="file"
+                              [id]='cntrol.key'
+                              [formControlName]='cntrol.key'
+                              [name]="cntrol.key"
+                              multiple="multiple"
+                              accept="image/*"
+                              style='display: none'
+                              (change)="uploadFileEvt($event)" />
+                          </div>
+                        </div>
+                      </ng-container>
+
+                    </div>
+                    <div class='errorMessage'><!-- *ngIf='isCustomValidator'-->
+                      <span *ngIf="getControlRequired(ctrl, cntrol.key)">
+                        {{cntrol.label}} is required.
+                      </span>
+                      <span *ngIf="getControlInvalid(ctrl, cntrol.key)">
+                        {{cntrol.label}} is invalid.
+                      </span>
+                      <span *ngIf="getControlMinLength(ctrl, cntrol.key)">
+                        {{cntrol.label}} should be at least {{cntrol.validators['minLength']}} Characters.
+                      </span>
+                      <span *ngIf="getControlPattern(ctrl, cntrol.key)">
+                        {{cntrol.label}} is invalid(regex).
+                      </span>
+                      <span *ngIf="getControlDatePickerMax(ctrl, cntrol.key)">
+                        {{control.label}} should be under {{maxDate | date }}.
+                      </span>
+                      <span *ngIf="getControlDatePickerMin(ctrl, cntrol.key)">
+                        {{control.label}} should be after {{minDate | date }}.
+                      </span>
+                    </div>
+                  </div>
+              </div>
+            </ng-container>
+            <mat-divider fxFlex="100" class="dividerbar" *ngIf="addSeparator && !last"></mat-divider>
+        </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #staticControls>
+    <ng-container *ngTemplateOutlet="controlTemplate;context:control"></ng-container>
+</ng-template>
+
+
+<ng-template #controlTemplate let-Control="control">
+
+  <div *ngIf="control.controlType === 'controlHeading'">
+    <h2 [ngClass]="control?.class" ihrmsUtil class='bold' *ngIf='control.label'>{{control.label}}</h2>
+  </div>
+
+  <div *ngIf="control.controlType === 'divider'">
+    <mat-divider ihrmsUtil marginTop="5"></mat-divider>
+  </div>
+
+  <div *ngIf="control.controlType === 'button'"
+       ihrmsUtil
+       [marginTop]=control.marginTop>
+    <button type="button" mat-raised-button class='mid-button' color="primary" [disabled]="form.invalid" (click)="onButtonClick($event, form, control, null)">
+      {{control.label}}
+    </button>
+  </div>
+
+  <div *ngIf="control.controlType === 'addEditButton'"
+       ihrmsUtil
+       [marginTop]=control.marginTop>
+    <button type="button" mat-raised-button class='mid-button' color="primary" [disabled]="form.invalid" (click)="onButtonClick($event, form, control, null)">
+      {{action || 'button' | titlecase }}
+    </button>
+  </div>
+
+  <div [formGroup]='form' fxFlex class='pos-rel w-100' *ngIf='control.key'><!-- regu-formcontrols-->
+    <label *ngIf="control.controlType !== 'checkbox'" [attr.for]='control.key'>{{control.label}}:</label>
+
+    <div [ngSwitch]='control.controlType' style='flex-wrap: wrap;'>
+
+      <ng-container *ngSwitchCase="'hidden'">
+        <mat-form-field>
+          <input matInput
+                 [id]="control.key"
+                 [formControlName]="control.key"
+                 [type]="control.type"
+                 [placeholder]="control.placeholder || control.label"
+          >
+        </mat-form-field>
+      </ng-container>
+
+      <mat-form-field *ngSwitchCase="'textbox'" fxFlex [ngClass]="{'protected': control?.protected && action === 'edit'}">
+        <input matInput
+               [id]="control.key"
+               [formControlName]="control.key"
+               [type]="control.type"
+               [placeholder]="control.placeholder || control.label"
+        >
+        <mat-hint *ngIf="control?.hint">{{control?.hint | titlecase}}</mat-hint>
+      </mat-form-field>
+
+      <section
+        *ngSwitchCase="'checkbox'" class='flex-wrap'>
+        <mat-checkbox
+          ihrmsUtil
+          [marginTop]=control.marginTop
+          fxFlex
+          [id]="control.key"
+          [formControlName]="control.key"
+          color="primary"
+        >
+          {{control.label}}
+        </mat-checkbox>
+        <small fxFlex='100' ihrmsUtil paddingLeft='25' *ngIf="control?.hint">{{control?.hint | titlecase}}</small>
+      </section>
+
+      <ng-container
+        *ngSwitchCase="'radioGroup'">
+        <mat-radio-group aria-label="Select an option"
+                         [id]='control.key'
+                         [formControlName]="control.key"
+                         color="primary"
+        >
+          <mat-radio-button ihrmsUtil [marginRight]='control?.marginRight || 10' [marginTop]='control?.marginTop || 10' *ngFor="let opt of control.options" [value]="opt.key">
+            {{opt.value}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </ng-container>
+
+      <mat-form-field class='pos-rel' *ngSwitchCase="'datepicker'" fxFlex [ngClass]="{'protected': control?.protected && action === 'edit'}">
+        <input matInput
+               [id]='control.key'
+               [formControlName]='control.key'
+               [type]='control.type'
+               [placeholder]='control.placeholder || control.label'
+               [class.error]=isCustomValidator
+               [min]="minDate"
+               [max]="maxDate"
+               [matDatepicker]='picker'
+               (click)='picker.open()'>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class='pos-rel' *ngSwitchCase="'timepicker'" fxFlex [ngClass]="{'protected': control?.protected && action === 'edit'}">
+        <input matInput
+               [id]='control.key'
+               [formControlName]='control.key'
+               [type]='control.type'
+               [placeholder]='control.placeholder || control.label'
+               [class.error]=isCustomValidator
+               [min]="control.validators?.minTime"
+               [max]="control.validators?.maxTime"
+               [ngxTimepicker]="appendedToInput" readonly
+               [format]="24"
+        >
+        <ngx-material-timepicker #appendedToInput [appendToInput]="true" [format]="24"></ngx-material-timepicker>
+      </mat-form-field>
+
+      <section *ngSwitchCase="'dropdown'" class="pos-rel">
+        <a class="addMoreOpt" (click)="onMoreOptionClick($event, form, control)">{{control?.addMoreOption?.text}}</a>
+        <mat-form-field fxFlex [ngClass]="{'protected': control?.protected && action === 'edit'}">
+          <mat-select [id]='control.key' [multiple]="control.type === 'multiple'" [formControlName]="control.key" [placeholder]='control.placeholder || control.label'>
+            <mat-option *ngFor="let opt of control.options" [value]="opt.key">
+              {{opt.value}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </section>
+
+      <mat-form-field *ngSwitchCase="'textarea'" fxFlex [ngClass]="{'protected': control?.protected && action === 'edit'}">
+<!--        <mat-label>{{control.label}}</mat-label>-->
+        <textarea
+          matInput
+          cdkTextareaAutosize
+          cdkAutosizeMinRows='7'
+          [placeholder]='control.placeholder || control.label'
+          [id]='control.key'
+          [formControlName]='control.key'
+        ></textarea>
+      </mat-form-field>
+
+      <ng-container
+        *ngSwitchCase="'fileUpload'">
+        <div fxLayout='row' fxLayoutAlign='start end'>
+          <div fxFlex='80px' class='image-box' *ngIf='control.type ==="image"'>
+            <img class='img-res' src='./assets/avtar_2.png' alt='avatar'/>
+          </div>
+          <div fxFlex fxLayout='row wrap' fxLayoutAlign='space-between start' class='btn-upload pos-rel'>
+            <p fxFlex='100' *ngIf='selectedFile?.name'>{{selectedFile?.name}}</p>
+            <!-- Display files names -->
+            <mat-form-field fxFlex>
+              <input matInput (click)="fileInput.click()" readonly name="name" [placeholder]='selectedFile?.name || "Select File"' />
+            </mat-form-field>
+            <!-- Browse Button -->
+            <button
+              fxFlex
+              (click)="fileInput.click()"
+              type='button'
+              mat-button
+              mat-raised-button
+              color="accent"
+              ihrmsUtil
+              marginBottom='0'
+              class='small-button'
+            >
+              Browse
+            </button>
+
+            <!-- Fetch selected filed on change -->
+            <input
+              #fileInput
+              type="file"
+              [id]='control.key'
+              [formControlName]='control.key'
+              [name]="control.key"
+              multiple="multiple"
+              accept="image/*"
+              style='display: none'
+              (change)="uploadFileEvt($event)" />
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <div class='errorMessage' *ngIf="isCustomValidator">
+      <span *ngIf="form.controls[control.key]?.errors?.required">
+        {{control.label}} is required.
+      </span>
+      <span *ngIf="form.controls[control.key]?.errors?.invalid">
+        {{control.label}} is invalid.
+      </span>
+      <span *ngIf="getControlMinLength(form.controls[control.key], control.key)">
+        {{control.label}} should be at least {{control.validators['minLength']}} Characters.
+      </span>
+      <span *ngIf="form.controls[control.key]?.errors?.pattern">
+        {{control.label}} is invalid(regex).
+      </span>
+      <span *ngIf="form.controls[control.key]?.hasError('matDatepickerMax')">
+        {{control.label}} should be under {{maxDate | date }}.
+      </span>
+      <span *ngIf="form.controls[control.key]?.hasError('matDatepickerMin')">
+        {{control.label}} should be after {{minDate | date }}.
+      </span>
+    </div>
+
+  </div>
+</ng-template>

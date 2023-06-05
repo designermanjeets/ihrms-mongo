@@ -1,0 +1,11 @@
+<div class='ihrms-profile' *ngIf='params?.username; else plain'>
+  <mat-card ihrmsUtil padding='0' class='noshadow avatar-card'>
+    <mat-card-header ihrmsUtil padding='0' fxLayout='row' fxLayoutAlign='center center'>
+      <div mat-card-avatar class='header-image'
+           [ngStyle]="{backgroundImage: 'url(' + backgroundImg(params?.userImg) + ')'}"></div>
+      <mat-card-title ihrmsUtil marginBottom='0' marginTop='5' fontSize='16'>{{params?.username}}</mat-card-title>
+      <mat-card-subtitle ihrmsUtil marginTop='-12' marginBottom='-4'>{{params?.subTitle}}</mat-card-subtitle>
+    </mat-card-header>
+  </mat-card>
+</div>
+<ng-template #plain>{{params}}</ng-template>

@@ -1,0 +1,56 @@
+<div class='ihrms-dynamic-forms regu-formcontrols' [ngClass]='{"readOnly": readonly, "hideForm": hideForm}'>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <!--[fxLayoutGap]="flexGap+'px'"-->
+    <div
+      fxLayout='row wrap'
+      [fxLayoutAlign]='flexAlignStart ? "start start" : "space-between start"'
+      [fxLayoutGap]='flexGap + "px"'
+    >
+      <div *ngFor="let control of _controls; let last = last"
+           [fxFlex]="dynamicControls ? '100': getFlex(control.fxFlex, flex)"
+           [fxFlex.lt-md]='100'
+           ihrmsUtil
+           [marginLeft]="control?.marginLeft"
+           [marginRight]="control?.marginRight"
+           [marginRightAuto]="control?.marginRightAuto"
+           [textAlign]="control?.textAlign"
+           [ngClass]="{'hiddenControl': control.controlType === 'hidden'}"
+      >
+        <ihrms-dynamic-form-control
+          ihrmsUtil
+          [paddingBottom]="last ? '0' : control.controlType === 'controlHeading' ? '0' : (paddingBottomCust || '15')"
+          [paddingBottomCust]="paddingBottomCust"
+          [fxFlex]="dynamicControls ? '100' : ''"
+          [flex]="flex"
+          [flexGap]='flexGap'
+          [flexAlignStart]='flexAlignStart'
+          [control]="control"
+          [form]="form"
+          [action]="action"
+          [reset]="formReset"
+          [update]="update"
+          [hideForm]="hideForm"
+          [addSeparator]="addSeparator"
+          [marginRightAuto]="control?.marginRightAuto"
+          [textAlign]="control?.textAlign"
+          [dynamicControls]="dynamicControls"
+          [labelAutoIncrement]="labelAutoIncrement"
+          (formEvents)="formEvents($event)"
+        ></ihrms-dynamic-form-control>
+      </div>
+
+    </div>
+
+    <ng-content select=".ihrms-grid"></ng-content>
+
+    <div *ngIf='stepperNext || stepperPrevious || stepperReset' ihrmsUtil paddingTop='25' fxLayout="row">
+      <button type="button" *ngIf='stepperClose' ihrmsUtil marginRight='10' mat-button mat-raised-button color='accent' class='mid-button' (click)="stepperCloseFun()">Cancel</button>
+      <button type="button" *ngIf='stepperPrevious' ihrmsUtil marginRight='10' mat-button mat-raised-button color='accent' class='mid-button' (click)="stepperPreviousFun()">Back</button>
+      <button type="button" *ngIf='stepperNext' mat-button mat-raised-button color='primary' class='mid-button' (click)="stepperNextFun()">Next</button>
+      <button type="button" *ngIf='stepperReset' mat-button mat-raised-button color='primary' class='mid-button' (click)="stepperResetFun()">Reset</button>
+      <button type="button" *ngIf='stepperSubmit' ihrmsUtil marginLeft='10' mat-button mat-raised-button color='primary' class='mid-button' (click)="stepperSubmitFun()">Submit</button>
+    </div>
+  </form>
+
+</div>

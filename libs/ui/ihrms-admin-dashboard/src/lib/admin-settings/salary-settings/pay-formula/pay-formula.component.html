@@ -1,0 +1,97 @@
+<ng-container *ngIf="dialogData?.dialog; else noDialogTemplate">
+  <mat-card ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" class='ihrms-dialog'>
+    <mat-card-header><mat-card-title>{{dialogData?.action}} Formula</mat-card-title></mat-card-header>
+    <mat-card-content>
+      <ng-container *ngTemplateOutlet="formulaTemplate;context:dialogData"></ng-container>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout='row' fxLayoutAlign='end start' fxLayoutGap="10px">
+      <button type="button" mat-raised-button color='default' class='mid-button' (click)="closeDialog(0)">Cancel</button>
+      <button type="submit" mat-raised-button color='primary' class='mid-button' (click)='formSubmitted()'>
+        {{dialogData?.okButtonText || 'Close'}}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
+
+<ng-template #noDialogTemplate>
+  <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+    <ng-container *ngTemplateOutlet="formulaTemplate;context:dialogData"></ng-container>
+  </section>
+</ng-template>
+
+
+<ng-template #formulaTemplate let-DialogData="dialogData">
+  <section class='ihrms-dynamic-forms regu-formcontrols'>
+    <h2 ihrmsUtil class='bold light-blue-head ml-m-10'>Formula</h2>
+    <section fxLayout="row" fxLayoutAlign="space-around start">
+      <input [(ngModel)]='formulaIdCtrl' type="hidden">
+      <div fxFlex="30">
+        <label>Formula Name</label>
+        <mat-form-field class="w-100">
+          <input matInput [(ngModel)]='formulaNameCtrl'>
+        </mat-form-field>
+      </div>
+      <div fxFlex="69">
+        <label>Formula</label>
+        <mat-form-field class="w-100">
+          <input matInput [(ngModel)]='formulaCtrl' (ngModelChange)="formulaCtrlChange($event)">
+        </mat-form-field>
+      </div>
+    </section>
+
+    <ejs-spreadsheet *ngIf="spread_loaded" #spreadSheetFormula (created)="created()" (select)="onSelected($event)">
+      <e-sheets>
+          <e-sheet name="PayHead Formula" [frozenRows]="freezePane" [frozenColumns]="freezePane">
+              <e-ranges>
+                  <e-range [showFieldAsHeader]="false" startCell="A2" [dataSource]="spread_data" [query]="spread_query">
+                  </e-range>
+              </e-ranges>
+              <e-rows>
+                  <e-row>
+                      <e-cells>
+                          <e-cell value="computedFormula" [style]="headerStyles"></e-cell>
+                          <e-cell value="name" [style]="headerStyles"></e-cell>
+                          <e-cell value="namePayslip" [style]="headerStyles"></e-cell>
+                          <e-cell value="testValue" [style]="headerStyles"></e-cell>
+                      </e-cells>
+                  </e-row>
+              </e-rows>
+              <e-columns>
+                  <e-column [width]=300 [style]="formulaStyles"></e-column>
+                  <e-column [width]=150></e-column>
+                  <e-column [width]=150></e-column>
+                  <e-column [width]=150></e-column>
+              </e-columns>
+          </e-sheet>
+      </e-sheets>
+
+    </ejs-spreadsheet>
+  
+    <section ihrmsUtil paddingTop='20' textAlign="right">
+      <button [disabled]="!formulaNameCtrl || !formulaCtrl" mat-raised-button color='primary' class='small-button' (click)='onFormulaAddEvent()'>{{formulaBtnText}}</button>
+    </section>
+    <!--./Form-->
+
+  </section>
+
+  <!--Grid-->
+  <ihrms-grid
+    *ngIf='formulaChartData'
+    ihrmsUtil paddingTop='20'
+    [height]='200'
+    [isMultiChartCard]="true"
+    [columnFit]='formulaChartData.columnFit'
+    [title]='formulaChartData.title'
+    [viewAll]='formulaChartData.viewAll'
+    [rowData]='formulaChartData.gridData?.rowData'
+    [columnDefs]='formulaChartData.gridData?.columnDefs'
+    [pagination]="formulaChartData.pagination"
+    [paginationPageSize]="formulaChartData.paginationPageSize"
+    [paginationAutoPageSize]="formulaChartData.paginationAutoPageSize"
+    [updateGridFromOutside]="formulaChartData.gridData?.updateGridFromOutside"
+    (onGridReadyOut)='onFormulaGridReady($event)'
+  >
+  </ihrms-grid>
+  <!--Grid-->
+</ng-template>

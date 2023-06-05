@@ -1,0 +1,56 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+    <mat-card-content ihrmsUtil height='100' padding="0">
+  
+      <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+        <mat-tab label="Goals">
+          <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 0'>
+            <!--Form-->
+            <ihrms-dynamic-form
+              [controls]="goalControls$ | async"
+              [flex]='48'
+              [flexGap]="15"
+              [flexAlignStart]="true"
+              [dynamicControls]="true"
+              [addSeparator]="true"
+              [paddingBottomCust]="'0'"
+              (formSubmitEvent)='goalFormSubmitEvent($event)'
+              (formObjectEvent)='goalFormObjectEvent($event)'
+              [formSubmitOutside]='formGoalSubmit$'
+              (formClickEvent)='formAddMoreGoalEvent($event)'
+            >
+            </ihrms-dynamic-form>
+            <section ihrmsUtil textAlign="left" paddingTop="10">
+              <button mat-raised-button color='primary' class='small-button' (click)='onGoalSaveEvent($event)'>Save Changes</button>
+            </section>
+            <!--./Form-->
+          </section>
+        </mat-tab>
+        <mat-tab label="Key Performance Events">
+          <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 1'>
+            <!--Form-->
+            <ihrms-dynamic-form
+              [controls]="keyPerformanceEventsControls$ | async"
+              [flex]='48'
+              [flexGap]="15"
+              [flexAlignStart]="true"
+              [dynamicControls]="true"
+              [addSeparator]="true"
+              [paddingBottomCust]="'0'"
+              (formSubmitEvent)='keyPerformanceEventsFormSubmitEvent($event)'
+              (formObjectEvent)='keyPerformanceEventsFormObjectEvent($event)'
+              [formSubmitOutside]='formKeyPerformanceEventsSubmit$'
+              (formClickEvent)='formAddMoreKeyPerformanceEvent($event)'
+            >
+            </ihrms-dynamic-form>
+            <section ihrmsUtil textAlign="left" paddingTop="10">
+              <button mat-raised-button color='primary' class='small-button' (click)='onKeyPerformanceEventsSaveEvent($event)'>Save Changes</button>
+            </section>
+            <!--./Form-->
+          </section>
+        </mat-tab>
+      </mat-tab-group>
+  
+    </mat-card-content>
+  </mat-card>
+  
+  

@@ -1,0 +1,24 @@
+<section ihrmsUtil ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="controls$ | async"
+    [flex]='24'
+    [paddingBottomCust]="'5'"
+    (formSubmitEvent)='formSubmitEvent($event)'
+    (formObjectEvent)='formObjectEvent($event)'
+    [formSubmitOutside]='formSubmit$'
+  >
+  </ihrms-dynamic-form>
+  <!--./Form-->
+  <section fxLayout='row' fxLayoutGap='20px'>
+    <mat-card fxFlex class='info-card' ihrmsUtil marginTop='25'>
+      <mat-card-content>
+        Note: ESI deductions will be made only if the employee’s monthly salary is less than or equal to ₹21,000. If the employee gets a salary revision which increases their monthly salary above ₹21,000, they would have to continue making ESI contributions till the end of the contribution period in which the salary was revised (April-September or October-March).
+      </mat-card-content>
+    </mat-card>
+  </section>
+
+  <section ihrmsUtil paddingTop='10' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onAddEvent($event)'>Save Changes</button>
+  </section>
+</section>

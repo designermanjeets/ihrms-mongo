@@ -1,0 +1,39 @@
+<mat-tab-group #tabGroup [color]='"green"' [backgroundColor]='"primary"' [animationDuration]='0'
+    [selectedIndex]="selectedIndex" (selectedTabChange)="onTabChanged($event)">
+    <mat-tab label='All Assigned Goals'>
+        <mat-card *ngIf='!selectedIndex' ihrmsUtil height="100">
+            <ihrms-filters ihrmsUtil textAlign='right' [filterConfig]='filterConfig'>
+            </ihrms-filters>
+            <ihrms-gridster [gridsterOptions]=gridsterOptions [dashboardItems]=dashboardItemsClaimsRequests
+                [resize$]='gridResize'>
+            </ihrms-gridster>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label='All Assigned Feedbacks'>
+        <mat-card *ngIf='selectedIndex === 1' ihrmsUtil height="100">
+            <ihrms-filters ihrmsUtil textAlign='right' [filterConfig]='filterConfig'>
+            </ihrms-filters>
+            <ihrms-gridster [gridsterOptions]=gridsterOptions [dashboardItems]=dashboardItemsLoanRequests
+                [resize$]='gridResize'>
+            </ihrms-gridster>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label='Performance Discussions'>
+        <mat-card *ngIf='selectedIndex === 2' ihrmsUtil height="100">
+            <ihrms-filters ihrmsUtil textAlign='right' [filterConfig]='filterConfig'>
+            </ihrms-filters>
+            <ihrms-gridster [gridsterOptions]=gridsterOptions [dashboardItems]=dashboardItemsLoanRequests
+                [resize$]='gridResize'>
+            </ihrms-gridster>
+        </mat-card>
+    </mat-tab>
+    <mat-tab label='Asked Feedbacks'>
+        <mat-card *ngIf='selectedIndex === 3' ihrmsUtil height="100">
+            <ihrms-filters ihrmsUtil textAlign='right' [filterConfig]='filterConfig'>
+            </ihrms-filters>
+            <ihrms-gridster [gridsterOptions]=gridsterOptions [dashboardItems]=dashboardItemsLoanRequests
+                [resize$]='gridResize'>
+            </ihrms-gridster>
+        </mat-card>
+    </mat-tab>
+</mat-tab-group>

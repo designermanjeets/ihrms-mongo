@@ -1,0 +1,40 @@
+.multi-chart-card {
+  mat-card-content {
+    height: 100%;
+    &.gridComponentFullHeight {
+      height: calc(100% - 50px);
+    }
+    .card-content-section {
+      display: block;
+      height: calc(100% - 5px) !important;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      mat-card-content {
+        //height: 100%;
+        ihrms-chart {
+          //height: 90%;
+        }
+      }
+      ihrms-grid {
+        display: block;
+      }
+    }
+    
+
+    .confirmroster {
+      margin-top: -25px;
+      justify-content: flex-end;  
+    }
+
+    @media screen and (max-width: 769px) {
+      &.isMobileFullHeight {
+        height: auto;
+        min-height: auto;
+        max-height: inherit;
+        .card-content-section {
+          height: calc(100% - 50px) !important;
+        }
+      }
+    }
+  }
+}

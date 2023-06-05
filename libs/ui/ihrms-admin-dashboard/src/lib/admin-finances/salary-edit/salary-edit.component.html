@@ -1,0 +1,28 @@
+<section style="height: 250px; flex-direction: column; padding: 0 10px; display: flex;">
+  <!--Grid-->
+  <ihrms-grid
+    *ngIf='formulaChartData'
+    ihrmsUtil paddingTop='20'
+    [height]='250'
+    [isMultiChartCard]="true"
+    [columnFit]='formulaChartData.columnFit'
+    [title]='formulaChartData.title'
+    [viewAll]='formulaChartData.viewAll'
+    [rowData]='formulaChartData.gridData?.rowData'
+    [columnDefs]='formulaChartData.gridData?.columnDefs'
+    [pagination]="formulaChartData.pagination"
+    [paginationPageSize]="formulaChartData.paginationPageSize"
+    [paginationAutoPageSize]="formulaChartData.paginationAutoPageSize"
+    [updateGridFromOutside]="formulaChartData.gridData?.updateGridFromOutside"
+    [editType]="''"
+    [stopEditingWhenCellsLoseFocus]="true"
+    [suppressClickEdit]="false"
+    (onGridReadyOut)='onFormulaGridReady($event)'
+    (onCellValueChangedOut)='onCellValueChangedOut($event)'
+  >
+  </ihrms-grid>
+  <!--Grid-->
+  <section ihrmsUtil paddingTop='10' textAlign="right">
+      <button mat-raised-button color='primary' class='small-button' (click)='onAddEventSalary($event)'>Save</button>
+  </section>
+</section>

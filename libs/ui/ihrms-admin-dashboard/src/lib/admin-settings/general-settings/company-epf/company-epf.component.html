@@ -1,0 +1,55 @@
+<section ihrmsUtil ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="controls$ | async"
+    [flex]='24'
+    [paddingBottomCust]="'5'"
+    (formSubmitEvent)='formSubmitEvent($event)'
+    (formObjectEvent)='formObjectEvent($event)'
+    [formSubmitOutside]='formSubmit$'
+  >
+  </ihrms-dynamic-form>
+
+  <section ihrmsUtil paddingTop='10' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onAddEvent($event)'>Save Changes</button>
+  </section>
+  <!--./Form-->
+  <section fxLayout='row' fxLayoutGap='20px' ihrmsUtil paddingTop='30'>
+    <div fxFlex ihrmsUtil marginTop='-20'>
+      <!--Grid-->
+      <ihrms-grid
+        *ngIf='gridData'
+        style='height: auto;'
+        [height]="200"
+        [isMultiChartCard]="true"
+        [title]='gridData.title'
+        [viewAll]='gridData.viewAll'
+        [columnFit]='gridData.columnFit'
+        [rowData]='gridData.gridData?.rowData'
+        [columnDefs]='gridData.gridData?.columnDefs'
+      >
+      </ihrms-grid>
+      <!--Grid-->
+    </div>
+    <div fxFlex='45'>
+      <mat-card class='info-card' ihrmsUtil marginTop='5'>
+        <mat-card-header>
+          <mat-card-title>
+            EPF Calculation
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div>
+            <p>Let's assume the PF wage is ₹ 20,000.</p>
+            <p class='bold'>The breakup of contribution will be:</p>
+            <p class='bold'>Employer's Contribution</p>
+            <p>EPS = 8.33% of PF Wage (Maximum of ₹ 15,000) = 8.33% of 15000 = ₹ 1250</p>
+            <p>EPF = 12% of PF Wage - EPS = ₹ 1800 (12% of 15000) - ₹ 1250 = ₹ 550</p>
+            <p class='bold'>Employee's Contribution</p>
+            <p>EPF = 12% of 15000 = ₹ 1800</p>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </section>
+</section>

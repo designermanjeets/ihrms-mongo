@@ -1,0 +1,107 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab label="Expense Approval">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 0'>
+          <ihrms-dynamic-form
+            [controls]="levelControls$ | async"
+            [flex]='24'
+            [flexGap]="5"
+            [flexAlignStart]="true"
+            [paddingBottomCust]="'0'"
+            (formObjectEvent)='expenseLevelFormObjectEvent($event)'
+          >
+          </ihrms-dynamic-form>
+          <!--Form-->
+          <!-- <ihrms-dynamic-form
+            [controls]="expenseControls$ | async"
+            [flex]='24'
+            [flexGap]="5"
+            [flexAlignStart]="true"
+            [dynamicControls]="true"
+            [paddingBottomCust]="'0'"
+            [labelAutoIncrement]="true"
+            (formSubmitEvent)='expenseFormSubmitEvent($event)'
+            (formObjectEvent)='expenseFormObjectEvent($event)'
+            [formSubmitOutside]='formExpenseSubmit$'
+            (formClickEvent)='formAddMoreExpenseEvent($event)'
+          >
+          </ihrms-dynamic-form> -->
+          <section ihrmsUtil textAlign="left" paddingTop="10">
+            <button mat-raised-button color='primary' class='small-button' (click)='onExpenseSaveEvent($event)'>Save Changes</button>
+          </section>
+          <!--./Form-->
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Leave Approval">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 1'>
+          <ihrms-dynamic-form
+            [controls]="levelControls$ | async"
+            [flex]='24'
+            [flexGap]="5"
+            [flexAlignStart]="true"
+            [paddingBottomCust]="'0'"
+            (formObjectEvent)='expenseLevelFormObjectEvent($event)'
+          >
+          </ihrms-dynamic-form>
+          <!--Form-->
+          <!-- <ihrms-dynamic-form
+            [controls]="leaveControls$ | async"
+            [flex]='24'
+            [flexGap]="5"
+            [flexAlignStart]="true"
+            [dynamicControls]="true"
+            [paddingBottomCust]="'0'"
+            [labelAutoIncrement]="true"
+            (formSubmitEvent)='leaveFormSubmitEvent($event)'
+            (formObjectEvent)='leaveFormObjectEvent($event)'
+            [formSubmitOutside]='formLeaveSubmit$'
+            (formClickEvent)='formAddMoreLeaveEvent($event)'
+          >
+          </ihrms-dynamic-form> -->
+          <section ihrmsUtil textAlign="left" paddingTop="10">
+            <button mat-raised-button color='primary' class='small-button' (click)='onLeaveSaveEvent($event)'>Save Changes</button>
+          </section>
+          <!--./Form-->
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Offer Approval">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 2'>
+          <ihrms-dynamic-form
+            [controls]="levelControls$ | async"
+            [flex]='24'
+            [flexGap]="5"
+            [flexAlignStart]="true"
+            [paddingBottomCust]="'0'"
+            (formObjectEvent)='expenseLevelFormObjectEvent($event)'
+          >
+          </ihrms-dynamic-form>
+          <!--Form-->
+          <!-- <ihrms-dynamic-form
+            [controls]="offerControls$ | async"
+            [flex]='24'
+            [flexGap]="5"
+            [flexAlignStart]="true"
+            [dynamicControls]="true"
+            [paddingBottomCust]="'0'"
+            [labelAutoIncrement]="true"
+            (formSubmitEvent)='offerFormSubmitEvent($event)'
+            (formObjectEvent)='offerFormObjectEvent($event)'
+            [formSubmitOutside]='formOfferSubmit$'
+            (formClickEvent)='formAddMoreOfferEvent($event)'
+          >
+          </ihrms-dynamic-form> -->
+          <section ihrmsUtil textAlign="left" paddingTop="10">
+            <button mat-raised-button color='primary' class='small-button' (click)='onOfferSaveEvent($event)'>Save Changes</button>
+          </section>
+          <!--./Form-->
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>
+

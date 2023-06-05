@@ -1,0 +1,21 @@
+<section ihrmsUtil ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <h2 class="bold light-blue-head ml-m-10">Labour Welfare Fund</h2>
+  <p>Labour Welfare Fund act ensures social security and improved working conditions for employees whose monthly salary is less than or equal to Rs.15,000.</p>
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="controls$ | async"
+    [flex]='24'
+    [flexGap]='10'
+    [paddingBottomCust]="'5'"
+    [flexAlignStart]='true'
+    (formSubmitEvent)='formSubmitEvent($event)'
+    (formObjectEvent)='formObjectEvent($event)'
+    [formSubmitOutside]='formSubmit$'
+  >
+  </ihrms-dynamic-form>
+  <!--./Form-->
+
+  <section ihrmsUtil paddingTop='10' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onAddEvent($event)'>Save Changes</button>
+  </section>
+</section>

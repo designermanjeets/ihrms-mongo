@@ -1,0 +1,29 @@
+<a mat-list-item
+   [ngStyle]="{'padding-left': (depth * 20) + 'px'}" (click)="onItemSelected(item)"
+   [ngClass]="{
+    'active': item.route ? router.isActive(item.route, true): false,
+    'expanded': item.children ? expanded : ''
+    }"
+   class="menu-list-item"
+>
+  <mat-icon class="routeIcon"
+            #tooltip="matTooltip"
+            [matTooltip]=item.displayName
+            [matTooltipPosition]="'right'"
+  >{{item.iconName}}</mat-icon>
+  <span *ngIf='opened'>{{item.displayName}}</span>
+  <ng-container *ngIf="item.displayName !== 'Settings'">
+  <span fxFlex *ngIf="item.children && item.children.length">
+    <span fxFlex></span>
+    <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">
+      expand_more
+    </mat-icon>
+  </span>
+</ng-container>
+</a>
+<div *ngIf="expanded">
+  <ng-container *ngIf="item.displayName !== 'Settings'">
+    <ihrms-menu-item *ngFor="let child of item.children" [item]="child" [depth]="depth+1" [opened]='opened'>
+    </ihrms-menu-item>
+  </ng-container>
+</div>

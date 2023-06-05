@@ -1,0 +1,118 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@import "~ag-grid-community/dist/styles/ag-grid.css";
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css";
+
+@mixin ihrms-agrid-theme($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+
+  .ag-theme-alpine, .ag-theme-balham {
+    width: 100%;
+    &:not(.isMultiChartCard) {
+      height: calc(100% - 10px) !important;
+    }
+    &:not([ng-reflect-pagination]) {
+      &:not(.isMultiChartCard) {
+        height: 100% !important;
+        &.ag-popup {
+          height: auto !important;;
+        }
+      }
+    }
+    &.ag-popup {
+     height: auto !important;;
+    }
+    .ag-root-wrapper-body.ag-layout-normal {
+      min-height: calc(100%);
+      height: auto;
+      @media screen and (max-width: 769px) {
+        min-height: 250px;
+      }
+    }
+    .ag-layout-normal {
+      @media screen and (max-width: 769px) {
+        min-height: 250px;
+      }
+    }
+    &.isPagination .ag-root-wrapper-body.ag-layout-normal {
+      min-height: calc(100% - 42px);
+    }
+    .ag-body-viewport.ag-layout-normal {
+
+      /* Works on Chrome, Edge, and Safari */
+      &::-webkit-scrollbar {
+        height: 10px;
+        width: 10px; // Known Ag Grid Slightly Wrong Header Scroll Calculations Issue
+        border-radius: 100%;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .4);
+        border-radius: 20px;
+      }
+      .cell-icon {
+        font-size: 13px;
+      }
+    }
+    .ag-body-horizontal-scroll-viewport {
+      /* Works on Chrome, Edge, and Safari */
+      &::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+        border-radius: 100%;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .4);
+        border-radius: 20px;
+      }
+    }
+    .pinnedRow {
+      background: mat.get-color-from-palette($primary-palette, 50);
+      font-weight: bold;
+    }
+    .row-border-green {
+      border-left: 4px solid lightseagreen;
+    }
+    .row-border-red {
+      border-left: 4px solid red;
+    }
+    .row-border-transparent {
+      border-left: 4px solid transparent;
+    }
+    .row-bg-transparent {
+      background-color: rgba(255, 255, 255, .2);
+    }
+    .row-bg-green {
+      background-color: rgba(31, 178, 170, .2);
+    }
+    .row-bg-red {
+      background-color: rgba(255, 0, 0, .2);
+    }
+  }
+  .mat-typography .floatGrid-header {
+    font-size: 15px;
+    line-height: 17px;
+    margin-bottom: 10px;
+  }
+
+  .mat-mdc-raised-button.micro-button.req-correction {
+    margin-right: -10px;
+    margin-top: -7px;
+    line-height: 20px !important;
+    height: 23px !important;
+  }
+
+  .ag-center-cols-container {
+    .ag-row.ag-row-level-0.ag-row-group.ag-row-group-expanded {
+      background: lightblue;
+    }
+  }
+
+}
+

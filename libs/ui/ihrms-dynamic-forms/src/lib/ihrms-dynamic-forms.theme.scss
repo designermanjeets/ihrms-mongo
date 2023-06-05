@@ -1,0 +1,131 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin dynamic-forms-theme($theme) {
+
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+  $accent-palette: map.get($color-config, 'accent');
+
+  .ihrms-dynamic-forms {
+
+    @include mat.input-density(-5);
+
+    label {
+      color: mat.get-color-from-palette($primary-palette, 800);
+      font-weight: 600;
+      display: block;
+      padding-bottom: 0px;
+      font-size: 13px;
+      text-transform: capitalize;
+    }
+    .mat-radio-button label {
+      font-weight: 500;
+      color: #333;
+    }
+    h2 {
+      margin-bottom: 5px;
+    }
+    // .mat-form-field-appearance-outline .mat-mdc-form-field-infix {
+    //   padding: 0.35em 0 0.2em 0;
+    //   border-top: none;
+    //   height: 24px;
+    //   line-height: 26px !important;
+    //   min-height: auto;
+    //   width: auto;
+    //   font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+    // }
+    // .mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+    //   transform: translateY(8%);
+    // }
+    // .mat-form-field-appearance-outline .mat-mdc-text-field-wrapper .mat-mdc-form-field-icon-prefix,
+    // .mat-form-field-appearance-outline .mat-mdc-text-field-wrapper .mat-mdc-form-field-icon-suffix {
+    //   top: 7px;
+    // }
+    .datepickertoggle {
+      position: absolute;
+      right: -6px;
+      top: -6px;
+      color: mat.get-color-from-palette($primary-palette, 500);
+    }
+    .errorMessage {
+      display: block;
+      font-size: 11px;
+      padding: 2px 0;
+      color: red;
+      position: absolute;
+      bottom: -15px;
+      left: 0;
+      width: 100%;
+      white-space: nowrap;
+      text-align: right;
+    }
+    .mdc-button {
+      //min-width: 100px;
+    }
+    &.readOnly {
+      //input, select, textarea {
+      //  border: none;
+      //  background: transparent;
+      //  -webkit-appearance: none;
+      //  -moz-appearance: none;
+      //  text-indent: 1px;
+      //  text-overflow: '';
+      //  pointer-events: none !important;
+      //  .mat-icon {
+      //    display: none;
+      //  }
+      //}
+      //select:disabled {
+      //  opacity: 1;
+      //  color: rgb(84, 84, 84);
+      //}
+      .datepickertoggle, .btn-upload {
+        display: none !important;
+        pointer-events: none !important;
+      }
+      .mat-form-field-outline-gap {
+        border: none;
+      }
+    }
+    &.hideForm > form > div:first-of-type {
+      visibility: hidden;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+    }
+    .mat-form-field-subscript-wrapper {
+      margin-top: 25px;
+      margin-left: -10px;
+    }
+    .mat-radio-label-content {
+      vertical-align: top;
+    }
+    .hiddenControl {
+      width: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
+      flex: none !important;
+      position: absolute !important;
+    }
+  }
+  .addMoreOpt {
+    position: absolute;
+    right: 0;
+    top: -16px;
+    z-index: 1;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  h2.light-blue-head {
+    background: lightblue;
+    padding-left: 10px;
+    font-size: 15px;
+    color: #333;
+  }
+
+}

@@ -1,0 +1,18 @@
+
+<ng-container *ngIf="params.data.change_history; else simpleListTemplate">
+    <div
+        ihrmsUtil 
+        margin='0' 
+        [lineHeight]='params?.value.length > 1 ? "normal": ""' 
+        *ngFor='let item of params?.value; index as i'
+    >
+        <p>Property: <b>{{item.property}}</b></p>
+        <p>Old Value: <b>{{item.old_value}}</b></p>
+        <p>New Value: <b>{{item.new_value}}</b></p>
+    </div>
+</ng-container>
+<ng-template #simpleListTemplate>
+    <p ihrmsUtil marginTop='0' [marginBottom]="last ? '5' : '0'" [lineHeight]='params?.value.length > 1 ? "normal": ""' *ngFor='let item of params?.value; index as i; let last = last'>
+        {{item.name ? item.name: item}}
+    </p>
+</ng-template>

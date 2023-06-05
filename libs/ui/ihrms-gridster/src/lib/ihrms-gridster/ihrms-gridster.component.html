@@ -1,0 +1,12 @@
+<gridster [options]="gridsterOptions" #gridster>
+
+    <ng-container *ngFor="let item of dashboardItems">
+
+        <gridster-item [item]="item.gridsterItem" [ngClass]='{ "flatGridsterItem": item.flatItem, "gridComponentFullHeight": item.gridComponentFullHeight }'>
+
+            <ndc-dynamic [ndcDynamicComponent]="item.dynamicComponent" [ndcDynamicInputs]="item.inputs" [ndcDynamicOutputs]="item.outputs"></ndc-dynamic>
+
+        </gridster-item>
+
+    </ng-container>
+</gridster>

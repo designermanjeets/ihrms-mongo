@@ -1,0 +1,20 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab label="Flexible Benefit Plan">
+        <ihrms-flexi-benefits *ngIf='selectedIndex === 0'></ihrms-flexi-benefits>
+      </mat-tab>
+      <mat-tab label="Reimbursement Claims">
+        <ihrms-reimbursement-claims *ngIf='selectedIndex === 1'></ihrms-reimbursement-claims>
+      </mat-tab>
+      <mat-tab label="Income Tax Declaration">
+        <ihrms-it-declarations *ngIf='selectedIndex === 2'></ihrms-it-declarations>
+      </mat-tab>
+      <mat-tab label="Proof Of Investments">
+        <ihrms-proof-of-investments *ngIf='selectedIndex === 3'></ihrms-proof-of-investments>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>

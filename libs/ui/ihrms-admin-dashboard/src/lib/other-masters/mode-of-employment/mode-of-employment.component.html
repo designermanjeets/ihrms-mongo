@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="modeOfEmploymentControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='modeOfEmploymentFormSubmitEvent($event)'
+  (formObjectEvent)='modeOfEmploymentFormObjectEvent($event)'
+  [formSubmitOutside]='formModeOfEmploymentSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onModeOfEmploymentSaveEvent($event)'>{{modeOfEmploymentBtnText + ' Mode Of Employment' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='modeOfEmploymentsData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='modeOfEmploymentsData.columnFit'
+  [title]='modeOfEmploymentsData.title'
+  [viewAll]='modeOfEmploymentsData.viewAll'
+  [rowData]='modeOfEmploymentsData.gridData?.rowData'
+  [columnDefs]='modeOfEmploymentsData.gridData?.columnDefs'
+  [pagination]="modeOfEmploymentsData.pagination"
+  [paginationPageSize]="modeOfEmploymentsData.paginationPageSize"
+  [paginationAutoPageSize]="modeOfEmploymentsData.paginationAutoPageSize"
+  [updateGridFromOutside]="modeOfEmploymentsData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onModeOfEmploymentsGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

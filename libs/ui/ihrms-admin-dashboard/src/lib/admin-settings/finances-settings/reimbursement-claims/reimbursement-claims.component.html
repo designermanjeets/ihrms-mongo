@@ -1,0 +1,30 @@
+<section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+
+  <mat-card class='info-card' *ngIf='!noComponent'>
+    <mat-card-header>
+      <mat-card-title>No Active Reimbursement</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      Employees can get tax exemptions on producing necessary bills.
+      You can enable a reimbursement component under Settings > Salary Components > Reimbursements and associate it to the employee's salary.
+    </mat-card-content>
+  </mat-card>
+
+  <ng-container *ngIf='noComponent'>
+    <!--Form-->
+    <ihrms-dynamic-form
+      [controls]="controls$ | async"
+      [flex]='24'
+      [paddingBottomCust]="'5'"
+      (formSubmitEvent)='formSubmitEvent($event)'
+      (formObjectEvent)='formObjectEvent($event)'
+      [formSubmitOutside]='formSubmit$'
+    >
+    </ihrms-dynamic-form>
+
+    <section ihrmsUtil paddingTop='10' textAlign="right">
+      <button mat-raised-button color='primary' class='small-button' (click)='onAddEvent($event)'>Save Changes</button>
+    </section>
+    <!--./Form-->
+  </ng-container>
+</section>

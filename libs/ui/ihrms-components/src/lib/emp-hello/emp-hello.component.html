@@ -1,0 +1,102 @@
+<section [ngStyle]="{ 'border-radius': _radius+'px' }" [ngClass]="palette || 'default' ">
+  <section class='scrollable h100' fxLayout='row' fxLayoutAlign='space-around center'>
+    <section fxFlex>
+      <h1 ihrmsUtil noWrap="true">Hello, {{user.username}}</h1>
+      <h3 ihrmsUtil noWrap="true" paddingTop='10' paddingBottom='10'>{{currTime}}</h3>
+      <p *ngIf='component === constants?.EMP_DASHBOARD' fxLayout='row' fxLayoutAlign='start center' fxLayoutGap='30px'>
+        <span>
+          <label *ngIf='loginInfo?.inTime' class="block">Logged-in at:- {{loginInfo?.inTime}}</label>
+          <label *ngIf='loginInfo?.outTime' class="block">Logged-out at:- {{loginInfo?.outTime}}</label>
+        </span>
+        <button mat-raised-button class='small-button' color='accent' (click)='onButtonClicks($event, constants.TITLES.Attendance)'>
+          {{isLoggedIn ? 'Web Clock Out' : 'Web Clock In'}}
+        </button>
+      </p>
+      <div fxLayout='row' fxLayoutAlign='space-between start' ihrmsUtil paddingTop='15'>
+
+        <ng-container *ngIf='component === constants?.EMP_DASHBOARD'>
+          <section fxFlex='80' fxLayout='row' fxLayoutAlign='start stretch' fxLayoutGap='20px'>
+
+            <div fxFlex fxLayout='column' fxLayoutAlign='space-around center' fxLayoutGap='10px'>
+              <button mat-fab color='accent' aria-label='constants.REMOTE' (click)='onButtonClicks($event, constants.REMOTE)'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36 white-text' color='default'>share_location</mat-icon>
+              </button>
+              <span>Remote</span>
+            </div>
+
+            <div fxFlex fxLayout='column' fxLayoutAlign='space-around center' fxLayoutGap='10px'>
+              <button mat-fab color='accent' aria-label='constants.WORK_FROM_HOME' (click)='onButtonClicks($event, constants.WORK_FROM_HOME)'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36 white-text' color='default'>maps_home_work</mat-icon>
+              </button>
+              <span ihrmsUtil textAlign='center' noWrap='true'>Working From Home</span>
+            </div>
+
+            <div fxFlex fxLayout='column' fxLayoutAlign='space-between center' fxLayoutGap='10px'>
+              <button mat-fab color='accent' aria-label='constants.ON_DUTY' (click)='onButtonClicks($event, constants.ON_DUTY)'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36 white-text' color='default'>workspaces</mat-icon>
+              </button>
+              <span>On Duty</span>
+            </div>
+
+          </section>
+        </ng-container>
+
+        <ng-container *ngIf='component === constants?.EMP_LEAVES'>
+          <section fxFlex='100' fxLayout='row' fxLayoutAlign='space-between stretch' fxLayoutGap='20px'>
+            <div (click)='onButtonClicks($event, constants.REQUEST_LEAVE)' class='card-button mat-elevation-z10' fxFlex.lt-md='100' fxFlex='50' fxLayout='column' fxLayoutAlign='space-evenly center'
+                 fxLayoutGap='10px'>
+              <h2 fxFlex class='text-accent bold'>Request Leave</h2>
+              <button fxHide.lt-md fxFlex mat-fab color='accent' aria-label='constants.REQUEST_LEAVE'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36' color='default'>add</mat-icon>
+              </button>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngIf='component === constants?.EMP_EXPENSE_CLAIM'>
+          <section fxFlex='100' fxLayout='row wrap' fxLayoutAlign='space-between stretch' fxLayoutGap.gt-sm='20px'>
+            <div (click)='onButtonClicks($event, constants.REQUEST_LOAN)' class='card-button mat-elevation-z10' fxFlex.lt-md='100' fxFlex='47' fxLayout='column' fxLayoutAlign='space-evenly center'
+                 fxLayoutGap='10px'>
+              <h2 fxFlex class='text-accent bold'>Request a Loan</h2>
+              <button fxHide.lt-md fxFlex mat-fab color='accent' aria-label='constants.REQUEST_LOAN'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36' color='default'>add</mat-icon>
+              </button>
+            </div>
+            <div (click)='onButtonClicks($event, constants.REQUEST_CLAIM)' class='card-button mat-elevation-z10' fxFlex.lt-md='100' fxFlex='47' fxLayout='column' fxLayoutAlign='space-evenly center'
+                 fxLayoutGap='10px'>
+              <h2 fxFlex class='text-accent bold'>Request a Claim</h2>
+              <button fxHide.lt-md fxFlex mat-fab color='accent' aria-label='constants.REQUEST_CLAIM'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36' color='default'>add</mat-icon>
+              </button>
+            </div>
+          </section>
+        </ng-container>
+        <ng-container *ngIf='component === constants?.ADMIN_DASHBOARD'>
+          <section fxFlex='100' fxLayout='row wrap' fxLayoutAlign='space-between stretch' fxLayoutGap.gt-sm='20px'>
+            <div (click)='onButtonClicks($event, constants.ADD_EMPLOYEE)' class='card-button mat-elevation-z10' fxFlex.lt-md='100' fxFlex='47' fxLayout='column' fxLayoutAlign='space-evenly center'
+                 fxLayoutGap='10px'>
+              <h2 fxFlex class='text-accent bold'>Add Employee</h2>
+              <button fxHide.lt-md fxFlex mat-fab color='accent' aria-label='constants.ADD_EMPLOYEE'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36' color='default'>add</mat-icon>
+              </button>
+            </div>
+            <div (click)='onButtonClicks($event, constants.CREATE_POST)' class='card-button mat-elevation-z10' fxFlex.lt-md='100' fxFlex='47' fxLayout='column' fxLayoutAlign='space-evenly center'
+                 fxLayoutGap='10px'>
+              <h2 fxFlex class='text-accent bold'>Create Post</h2>
+              <button fxHide.lt-md fxFlex mat-fab color='accent' aria-label='constants.CREATE_POST'>
+                <mat-icon ihrmsUtil marginTop='-5' class='md-36' color='default'>add</mat-icon>
+              </button>
+            </div>
+          </section>
+        </ng-container>
+
+      </div>
+    </section>
+    <section fxHide.lt-md fxFlex='40' fxLayoutAlign='end'>
+      <img class='img-res'
+           [src]='component === constants?.EMP_DASHBOARD ? "./assets/amico.png" : "./assets/homeAdmin.png"'
+           [alt]='component'>
+    </section>
+  </section>
+</section>
+
+<ngx-ui-loader [loaderId]='randomLoader'></ngx-ui-loader>

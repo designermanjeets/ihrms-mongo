@@ -1,0 +1,72 @@
+<section
+  fxFill
+  fxLayout='column'
+  class='ihrms-sidebar notification-sidebar'
+  [ngClass]='{"flatInsideCard": config?.flatInsideCard, palette: palette || "default" }'
+  [ngStyle]="{ 'width.px': sideBarWidth, 'border-radius': _radius+'px' }"
+>
+  <section
+    [fxLayout]='"row wrap"'
+    [fxLayoutAlign]='!config?.flatInsideCard ? "space-between start" : "center start"'
+    ihrmsUtil
+    paddingTop='10'
+    paddingBottom='10'
+    [ngClass]='{ "primaryCenterHeader": config?.flatInsideCard}'
+  >
+    <button *ngIf='config?.closeable !== false' (click)='closeNotificationBar()' ihrmsUtil marginTop='-3' mat-icon-button aria-label="Close Notifications">
+      <mat-icon color='primary'>cancel</mat-icon>
+    </button>
+    <h1 fxFlex='100' class='display-1'>
+      {{config?.title || 'Notifications'}}
+      <a class='text-primary view-all'>View All</a>
+    </h1>
+
+  </section>
+  <section class='scrollable dark-scrollbar' [ngStyle]="{ 'height.vh': config?.height || 'auto' }">
+    <mat-card class='mat-elevation-z10' *ngFor='let noti of notificationItems'>
+      <mat-card-header>
+        <div mat-card-avatar class="header-image" [ngStyle]="{backgroundImage: 'url(' + backgroundImg(noti.headerImg) + ')'}">
+        </div>
+        <mat-card-title>{{noti.title}}</mat-card-title>
+        <mat-card-subtitle ihrmsUtil marginBottom="5">{{noti.subtitle}}</mat-card-subtitle>
+        <div class='ihrms-spacer'></div>
+<!--        <button mat-button mat-icon-button [matMenuTriggerFor]="moreCardMenu" aria-label="moreCardMenu Menu">-->
+<!--          <mat-icon color='primary'>more_vert</mat-icon>-->
+<!--        </button>-->
+      </mat-card-header>
+      <mat-card-content ihrmsUtil marginBottom="0">
+        <p>
+          {{noti.content}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button class="small-button">
+          <mat-icon color='accent'>thumb_up</mat-icon>
+        </button>
+        <button mat-icon-button class="small-button">
+          <mat-icon color='accent'>share</mat-icon>
+        </button>
+        <button mat-icon-button class="small-button">
+          <mat-icon color='accent'>comment</mat-icon>
+        </button>
+      </mat-card-actions>
+      <mat-divider *ngIf='config?.flatInsideCard' ihrmsUtil paddingBottom='20'></mat-divider>
+    </mat-card>
+  </section>
+</section>
+
+<mat-menu #moreCardMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Redial</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voice mail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+</mat-menu>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

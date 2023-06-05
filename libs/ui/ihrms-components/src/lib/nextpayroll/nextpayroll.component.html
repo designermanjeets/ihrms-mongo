@@ -1,0 +1,36 @@
+<section
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' fxLayout='row' fxFill>
+
+    <div class='ihrms-card'>
+      <mat-card-header>
+        {{title}}
+      </mat-card-header>
+      <mat-card-content [ngClass]="{ 'isMobile': isMobile }" ihrmsUtil [attr.height]="isMobile ? 100: 80" marginTop='10' class='text-primary bold' fxLayout='column' fxLayoutAlign="space-between stretch">
+        <p ihrmsUtil fontSize='20' paddingTop='20' paddingBottom='20' textAlign='center'>Today: {{counter?.today | date:'mediumDate'}}</p>
+        <section fxFlex='100' ihrmsUtil fontSize='40' fxLayout='row' fxLayoutAlign='space-between center'>
+          <mat-icon fxFlex='90px' ihrmsUtil fontSize='70' class='bold' style='height: 90px'>timelapse</mat-icon>
+          <p fxLayout='column' fxLayoutAlign='space-between center' fxLayoutGap='15px'>
+            <span>{{counter?.duration.get('d')}}</span>
+            <span ihrmsUtil fontSize='20' class="f15">Days</span>
+          </p>
+          <p fxLayout='column' fxLayoutAlign='space-between center' fxLayoutGap='15px'>
+            <span>{{counter?.duration.get('h')}}</span>
+            <span ihrmsUtil fontSize='20' class="f15">Hours</span>
+          </p>
+          <p fxLayout='column' fxLayoutAlign='space-between center' fxLayoutGap='15px'>
+            <span>{{counter?.duration.get('m')}}</span>
+            <span ihrmsUtil fontSize='20' class="f15">Mins</span>
+          </p>
+          <p fxLayout='column' fxLayoutAlign='space-between center' fxLayoutGap='15px'>
+            <span>{{counter?.duration.get('s')}}</span>
+            <span ihrmsUtil fontSize='20' class="f15">Secs</span>
+          </p>
+        </section>
+      </mat-card-content>
+    </div>
+  </section>
+</section>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

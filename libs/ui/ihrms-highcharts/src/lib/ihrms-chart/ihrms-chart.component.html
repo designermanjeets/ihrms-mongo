@@ -1,0 +1,49 @@
+<section
+  *ngIf='_charType && multiChart === true; else singleChart'
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default'"
+  #outerContainer
+  fxLayout='row wrap'
+  class="h-100"
+>
+  <h1 fxFlex='100' class='mat-headline' ihrmsUtil paddingLeft='15' paddingTop='5' fxLayout='row' fxLayoutAlign='space-between start'>
+    {{charTitle}}
+    <span ihrmsUtil fontSize='14'>{{currMonth}}</span>
+  </h1>
+  <section fxFlex='100' ihrmsUtil marginTop='0' [ngClass]='{"invisible": !viewLoaded}'>
+    <ng-container *ngTemplateOutlet="highchartCont"></ng-container>
+  </section>
+</section>
+
+<ng-template #singleChart>
+  <section
+    *ngIf='_charType'
+    [ngStyle]="{ 'border-radius': _radius+'px'}"
+    [ngClass]="palette || 'default'"
+    #outerContainer
+  >
+    <h1 *ngIf='charTitle' class='mat-headline' ihrmsUtil paddingLeft='15' paddingTop='5' fxLayout='row' fxLayoutAlign='space-between start'>
+      {{charTitle}}
+      <span ihrmsUtil fontSize='14'>{{currMonth}}</span>
+    </h1>
+    <section class='scrollable dark' ihrmsUtil marginTop='0' [ngClass]='{"invisible": !viewLoaded}'>
+      <ng-container *ngTemplateOutlet="highchartCont"></ng-container>
+    </section>
+  </section>
+</ng-template>
+
+
+<ng-template #highchartCont>
+  <!--*ngIf="isHighcharts && doLoadChart"-->
+  <highcharts-chart #ihrmsHighchart
+                    *ngIf="isHighcharts"
+                    [Highcharts]='highcharts'
+                    [constructorType]='chartConstructor'
+                    [options]='highchartsOptions'
+                    [(update)]='update'
+                    [oneToOne]='oneToOneFlag'
+                    [callbackFunction]= "chartCallback"
+                    [runOutsideAngular]="runOutsideAngularFlag"
+  ></highcharts-chart>
+</ng-template>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

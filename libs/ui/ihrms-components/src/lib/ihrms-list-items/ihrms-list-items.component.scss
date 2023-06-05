@@ -1,0 +1,20 @@
+:host {
+    ::ng-deep {
+        .scrollable.dark {
+            margin-top: 25px;
+            height: calc(100%) !important;
+            padding: 0;
+        }
+        .mat-mdc-list-item, .mat-mdc-list-option {
+            &:nth-child(1) {
+                border-top: 1px solid #ddd;
+            }
+            border-bottom: 1px solid #ddd;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        .list-arrow {
+            float: right;
+        }
+    }
+}

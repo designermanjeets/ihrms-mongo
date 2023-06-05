@@ -1,0 +1,36 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab label="Shift">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 0'>
+          <!--Component-->
+          <ihrms-shift-type></ihrms-shift-type>
+          <!--./Component-->
+        </section>
+      </mat-tab>
+      <mat-tab label="Shift Schedule">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 1'>
+          <!--Form-->
+          <ihrms-dynamic-form
+            [controls]="shiftScheduleControls$ | async"
+            [flex]='24'
+            [flexGap]="10"
+            [flexAlignStart]="true"
+            [paddingBottomCust]="'5'"
+            (formSubmitEvent)='formShiftScheduleSubmitEvent($event)'
+            (formObjectEvent)='formShiftScheduleObjectEvent($event)'
+            [formSubmitOutside]='formShiftScheduleSubmit$'
+          >
+          </ihrms-dynamic-form>
+
+          <section ihrmsUtil paddingTop='10' textAlign="right">
+            <button mat-raised-button color='primary' class='small-button' (click)='onShiftScheduleAddEvent($event)'>Save Changes</button>
+          </section>
+          <!--./Form-->
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>

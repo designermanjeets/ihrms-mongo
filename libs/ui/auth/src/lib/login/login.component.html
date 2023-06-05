@@ -1,0 +1,58 @@
+<section *ngIf='showLogin' fxLayout='row' fxFill>
+    <section fxFlex="100" fxFlex.gt-md='40' fxLayout='row wrap' fxLayoutAlign="space-around center" class='login-panel'>
+      <p class='ihrms-logo'>
+        <img src="/assets/ihrms-logo.jpeg" alt="hrms-logo">
+      </p>
+      <h1 fxLayoutAlign='center center' fxFlex='100' class='mat-headline' style='margin-bottom: 40px'>
+        {{ 'login.welcome' | translate }}
+      </h1>
+
+      <form fxFlex="60" [formGroup]="loginForm" [ngClass]="{'isLoggiedIn': isLoggiedIn}" (ngSubmit)="onSubmit()" fxLayout='column' fxLayoutGap='25px'>
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'login.emailoruser' | translate }}</mat-label>
+          <input matInput formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'login.password' | translate }}</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'hidePassword password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        
+        <mat-form-field fxFlex [fxHide]="!tenantOptions?.length">
+          <mat-label>{{ 'login.select_company' | translate }}</mat-label>
+          <mat-select placeholder='Select Company' formControlName="tenant" #tenant>
+            <mat-option *ngFor="let opt of tenantOptions" [value]="opt._id">
+              {{opt.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div fxLayoutAlign='space-between center' fxLayout='row'>
+          <button fxFlex='50' mat-raised-button color="primary" [disabled]="isLoggiedIn && !tenant?.value">{{isLoggiedIn ? 'Submit': 'Sign In'}}</button>
+          <a *ngIf="!isLoggiedIn" (click)="changepass($event)">Forgot Password?</a>
+        </div>
+        <p *ngIf="isLoggiedIn" class='light-text'><a (click)="logout()">Logout</a> and Sign-In with different User</p>
+      </form>
+
+  </section>
+  <section fxFlex='60' fxHide.lt-md="true">
+    <swiper [config]="swiperConfig" #usefulSwiper>
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" *ngFor="let image of swiperImages">
+          <div class='swiper-header'><h1>{{image.caption}}</h1></div>
+          <img [src]="image.path" [attr.alt]='image.alt' />
+          <span class='swiper-overlay'></span>
+        </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Arrows -->
+<!--      <div class="swiper-button-next"></div>-->
+<!--      <div class="swiper-button-prev"></div>-->
+    </swiper>
+  </section>
+</section>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

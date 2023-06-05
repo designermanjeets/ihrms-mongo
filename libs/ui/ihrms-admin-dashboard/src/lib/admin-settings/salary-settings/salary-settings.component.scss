@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  height: calc(100% - 70px);
+  ::ng-deep {
+    .ihrms-dynamic-forms .mat-form-field-appearance-outline .mat-form-field-infix {
+      min-width: 180px;
+    }
+
+    .formula-list {
+      width: 100%;
+      height: 300px;
+      .mat-form-field-flex {
+        padding: 0;
+      }
+      .mat-form-field-infix {
+        background: white;
+      }
+      .mat-form-field-underline {
+        display: none;
+      }
+      .mat-chip-list-wrapper .mat-standard-chip {
+        margin: 0px;
+        border-radius: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        text-transform: uppercase;
+        .mat-chip-remove {
+          border: none;
+          position: absolute;
+          right: -3px;
+          top: -7px;
+          display: none;
+          background: transparent;
+          .mat-icon {
+            margin-left: -4px;
+            margin-top: -4px;
+            width: 16px;
+            height: 16px;
+            font-size: 16px;
+            color: black;
+            opacity: 1;
+          }
+        }
+        &:hover .mat-chip-remove, &:focus .mat-chip-remove {
+          display: block;
+        }
+      }
+    }
+  }
+}

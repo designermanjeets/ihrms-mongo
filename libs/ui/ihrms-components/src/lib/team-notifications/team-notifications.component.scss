@@ -1,0 +1,19 @@
+.notif-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  text-align: center;
+  overflow: hidden;
+}
+h1 {
+  font-size: 15px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 0;
+}
+.view-all {
+  float: right;
+}
+:host .scrollable.dark {
+  height: calc(100% - 45px) !important;
+}

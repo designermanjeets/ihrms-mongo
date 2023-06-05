@@ -1,0 +1,97 @@
+<button *ngIf='attendanceData' (click)="onClose()" class="close-dialog" mat-icon-button aria-label="Close Dialog">
+  <mat-icon color='primary'>cancel</mat-icon>
+</button>
+<section
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' [ngClass]="{'attendanceData': attendanceData}" fxLayout='row' fxFill>
+
+    <div class='ihrms-card'>
+      <mat-card-header>
+        {{title}}
+        <span *ngIf="attendanceData">
+          Attendance Details
+        </span>
+      </mat-card-header>
+      <mat-card-content
+        ihrmsUtil
+        marginTop='10'
+        [textAlign]="attendanceData ? 'left': 'center'"
+        fxLayout='column'
+        fxLayoutAlign='space-around center'
+        fxFill
+      >
+        <section fxLayout='row wrap' [ngClass]="{'attendanceDataWidth': attendanceData}">
+          <mat-card fxFlex='100' fxLayout='row wrap' class='mat-mdc-elevation-specific mat-elevation-z0'>
+            <mat-card-header fxFlex="100" ihrmsUtil paddingTop="0" *ngIf="!attendanceData">
+              <h1 ihrmsUtil marginBottom='0'>Shift: <b>{{loginInfo?.shift || 'No Data'}}</b></h1>
+            </mat-card-header>
+            <mat-card-content fxFlex='100' ihrmsUtil marginTop="0" paddingLeft="16" paddingRight="16">
+              <ng-container *ngIf="!attendanceData; else attendata">
+                <h2 fxFlex class='mat-subheading-2'>
+                  Time-In:  {{loginInfo?.inTime}}
+                </h2>
+                <h2 fxFlex class='mat-subheading-2'>
+                  Time-Out: {{loginInfo?.outTime}}
+                </h2>
+              </ng-container>
+              <ng-template #attendata>
+                <div>
+                  <h3 fxLayout="row" fxLayoutGap="10px">
+                    <span fxFlex="50">
+                      <label class="bold">Employee Name:</label> {{attendanceData.username}}
+                    </span>
+                    <span fxFlex>
+                      <label class="bold">Employee ID:</label> {{attendanceData.username}}
+                    </span>
+                  </h3>
+                </div>
+                <div fxLayout="row" fxLayoutGap="10px">
+                  <div fxFlex="50">
+                    <mat-card ihrmsUtil paddingTop="5" class="mat-mdc-elevation-specific mat-elevation-z0">
+                      <mat-card-content ihrmsUtil marginTop="0">
+                        <h2 class="text-left bold">Attendance</h2>
+                        <p fxLayout="column" fxLayoutGap="5px" class="text-left">
+                          <span><label class="labels">Date:</label> {{attendanceData.date | date:'mediumDate'}}</span>
+                          <span><label class="labels">Total Hours:</label>{{attendanceData.totalHours | number: '1.2-2'}}</span>
+                          <span><label class="labels">Shift:</label> {{attendanceData.userShiftName}}</span>
+                          <span><label class="labels">Break:</label>--TO:DO--</span>
+                          <span><label class="labels">Overtime:</label>{{attendanceData.overtime | number: '1.2-2'}}</span>
+                        </p>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                  <div fxFlex>
+                    <mat-card ihrmsUtil paddingTop="5" class="mat-mdc-elevation-specific mat-elevation-z0">
+                      <mat-card-content ihrmsUtil marginTop="0">
+                        <h2 class="text-left bold">Swipe Activity</h2>
+                        <ng-container *ngFor="let item of attendanceData?.all_swipes">
+                          <p fxLayout="row">
+                            <span fxFlex class='mat-subheading-4 text-left'>
+                              <b>Punch-In:</b> {{item.punchIn | date:'shortTime'}}
+                            </span>
+                            <span fxFlex class='mat-subheading-4 text-left'>
+                              <b>Punch-Out:</b> {{item.punchOut | date:'shortTime'}}
+                            </span>
+                          </p>
+                        </ng-container>
+                      </mat-card-content>
+                    </mat-card>
+                  </div>
+                </div>
+              </ng-template>
+            </mat-card-content>
+          </mat-card>
+          <p fxFlex='100' ihrmsUtil textAlign="center" marginTop='15'>
+            <button mat-raised-button color='accent' class='radius-20' (click)="onCorrectTime($event)">
+              Correct Time
+            </button>
+          </p>
+        </section>
+        <small *ngIf="!attendanceData">Shifts Assigned to you: <b>{{loginInfo?.shift}}</b></small>
+      </mat-card-content>
+    </div>
+  </section>
+</section>
+<ngx-ui-loader *ngIf="!attendanceData" [loaderId]="randomLoader"></ngx-ui-loader>

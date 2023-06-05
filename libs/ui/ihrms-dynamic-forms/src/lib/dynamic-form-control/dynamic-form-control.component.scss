@@ -1,0 +1,40 @@
+:host {
+  width: 100%;
+}
+#uploadFile {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+}
+.image-box {
+  max-height: 80px;
+  height: 80px;
+  padding: 2px;
+  > img {
+    border: 1px solid #ddd;
+  }
+}
+.btn-upload {
+  .mdc-button {
+    line-height: 33px;
+    border-radius: 2px;
+    font-size: 13px;
+    position: absolute;
+    right: 1px;
+    bottom: 7px;
+  }
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.dividerbar {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}

@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="employeeTypeControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='employeeTypeFormSubmitEvent($event)'
+  (formObjectEvent)='employeeTypeFormObjectEvent($event)'
+  [formSubmitOutside]='formEmployeeTypeSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onEmployeeTypeSaveEvent($event)'>{{employeeTypeBtnText + ' Employee Type' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='employeeTypesData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='employeeTypesData.columnFit'
+  [title]='employeeTypesData.title'
+  [viewAll]='employeeTypesData.viewAll'
+  [rowData]='employeeTypesData.gridData?.rowData'
+  [columnDefs]='employeeTypesData.gridData?.columnDefs'
+  [pagination]="employeeTypesData.pagination"
+  [paginationPageSize]="employeeTypesData.paginationPageSize"
+  [paginationAutoPageSize]="employeeTypesData.paginationAutoPageSize"
+  [updateGridFromOutside]="employeeTypesData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onEmployeeTypesGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

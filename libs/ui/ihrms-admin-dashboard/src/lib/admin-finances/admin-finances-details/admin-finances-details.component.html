@@ -1,0 +1,287 @@
+<mat-tab-group #tabGroup
+               [color]='"green"'
+               [backgroundColor]='"primary"'
+               [animationDuration]='0'
+               [(selectedIndex)]="selectedIndex"
+               (selectedTabChange)="onTabChanged($event)"
+>
+  <mat-tab label='Salary'>
+    <mat-card *ngIf='!selectedIndex'ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitFinance($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsSalary
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+
+  <mat-tab label='Salary Revisions'>
+    <mat-card *ngIf='selectedIndex === 1' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitSalaryRevisions($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsSalaryRevisions
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  
+  <mat-tab label='Income Tax'>
+    <mat-card *ngIf='selectedIndex === 2'ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsIncomeTax
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Payroll'>
+    <mat-card *ngIf='selectedIndex === 3'ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitPayroll($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsPayroll
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>
+
+<ng-template #confirmDialog let-data>
+  <mat-card ihrmsUtil padding='0' class='ihrms-dialog'>
+    <mat-card-header>
+      <mat-card-title>Payroll Not Generated</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="min-height: 75px; padding-top: 25px;">
+        Kindly Generate Payroll First from Finance Dashboardata.
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout='row' fxLayoutAlign='end start'>
+      <button type="button" mat-button mat-raised-button color='primary' class='mid-button' (click)="onCancel()">Close</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<ng-template #confirmPayrollDialog let-data>
+  <mat-card ihrmsUtil padding='0' class='ihrms-dialog'>
+    <mat-card-header>
+      <mat-card-title>Are you sure?</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div style="min-height: 75px; padding-top: 25px;">
+        Are you sure that you want to {{data.action}} the pay for selected Employee?
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout='row' fxLayoutAlign='end start'>
+      <button ihrmsUtil marginRight="10" type="button" mat-button mat-raised-button color='default' class='mid-button' (click)="onPayCancel(0)">Cancel</button>
+      <button type="button" mat-button mat-raised-button color='primary' class='mid-button' (click)="onPayCancel(data)">Proceed</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>
+
+<section [hidden]="true" #payslipPDFContent>
+  <ng-container *ngTemplateOutlet="printPayslipDialog"></ng-container>
+</section>
+<ng-template #printPayslipDialog let-data>
+  <div fxLayout="row" fxLayoutGap="10px" class="slipIcons">
+    <button color="primary" fxflex="30px" mat-icon-button aria-label="Print Payslip">
+      <mat-icon>print</mat-icon>
+    </button>
+    <button (click)="downloadAsPDF()" color="primary" fxflex="30px" mat-icon-button aria-label="Download Payslip">
+      <mat-icon>download</mat-icon>
+    </button>
+    <button (click)="onPayPrintCancel()" color="primary" fxflex="30px" mat-icon-button aria-label="Close Dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <mat-card ihrmsUtil padding='0' class='ihrms-dialog payslipDialog mat-cardz' #payslipContent id="ihrmsGrid" *ngIf="data">
+    <!-- <mat-card-header>
+      <mat-card-title>Download or Print  Payslip.</mat-card-title>
+    </mat-card-header> -->
+    <mat-card-content class="w-1000" style="border: 1px solid #eee;">
+      <div style="min-height: 75px; padding-top: 5px;" class="w-1000">
+        <section fxLayout="row wrap" class="compEmpInfo w-1000">
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="150px">PAY ADVICE FOR</div>
+            <div fxFlex><b>{{data.pay_advice_for}}</b></div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="150px">Address</div>
+            <div fxFlex>{{data.user_address}}</div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="150px">Pay Period</div>
+            <div fxFlex>{{this.getCurrentMonthFirstdate()}} - {{this.getCurrentMonthLastdate()}}</div> 
+            
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Employee No</div> <div fxFlex>{{data.eCode}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">PAN</div> <div fxFlex >{{data.pan}}</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Employee Name</div> <div fxFlex>{{data.name}}  {{data.surname}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">UAN</div> <div fxFlex>{{data.user_bank_UANNo}}</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Designation</div> <div fxFlex>{{data.user_designation_name}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Emp PF Number</div> <div fxFlex>{{data.user_bank_PFNo}}</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">DOJ</div> <div fxFlex>{{this.getCurrentZoneTime(data.user_doj)}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Emp Pension Number</div> <div fxFlex>{{data.user_bank_PensionNo}}</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Gender</div> <div fxFlex>{{data.user_gender}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Bank A/c Number</div> <div fxFlex>{{data.user_bank_accountNo}}</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Department</div> <div fxFlex> {{data.user_department_name}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">IFSC Code</div> <div fxFlex>{{data.user_bank_ifscCode}}</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Location</div> <div fxFlex>{{data.user_location}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Paid Days</div> <div fxFlex>31.00 days</div>
+            </div>
+          </div>
+          <div fxFlex="100" fxLayput="row" class="w-1000">
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">DOB</div> <div fxFlex>{{this.getCurrentZoneTime(data.user_dob)}}</div>
+            </div>
+            <div fxFlex="50" fxLayput="row">
+              <div fxFlex="150px">Last working day</div> <div fxFlex>{{this.getCurrentZoneTime(data.user_dor)}}</div>
+            </div>
+          </div>
+
+
+          <section fxLayout="row wrap" class="w-1000">
+            <div fxFlex="100" fxLayout="row" class="w-1000"><!-- fxLayoutAlign="start start"-->
+              <!--EARNINGS & ALLOWANCES-->
+              <div fxFlex="50" fxLayout="row" class="pay-table w-500" ihrmsUtil marginTop="10">
+                <div fxFlex="100" fxLayout="row wrap" class="w-500" >
+                  <div class="header w-250" fxFlex="50">EARNINGS & ALLOWANCES</div><div class="header right w-250" fxFlex="50">INR</div>
+                  <div *ngFor="let ph of data.payHeads"> 
+                    <div class="w-250" fxFlex="50" *ngIf="ph.payhead_type=='Earnings for Employees'">{{ph.name}}</div>
+                    <div class="right w-250" fxFlex="50" *ngIf="ph.payhead_type=='Earnings for Employees'">{{ph.value}} </div>
+                  <!-- <div class="w-250" fxFlex="50">House Rent Allowance</div><div class="right w-250" fxFlex="50">1530.00</div>
+                  <div class="w-250" fxFlex="50">Education Allowance</div><div class="right w-250" fxFlex="50">1160.00</div>
+                  <div class="w-250" fxFlex="50">Management Allowance</div><div class="right w-250" fxFlex="50">23564.00</div>
+                  <div class="w-250" fxFlex="50">WFH Allowance</div><div class="right w-250" fxFlex="50">1555.00</div>
+                  <div class="w-250" fxFlex="50">QIP</div><div class="right w-250" fxFlex="50">9658.00</div> -->
+                  </div>
+                  <div class="w-250" ihrmsUtil marginTop="10" fxFlex="50">Total Gross</div><div class="right w-250" ihrmsUtil marginTop="10" fxFlex="50">{{data.user_salary  + data.user_overtime}}</div>
+                </div>
+              </div>
+              <!--Deductions-->
+              <div fxFlex="50" fxLayout="row" class="pay-table w-500" ihrmsUtil marginTop="10">
+                <div fxFlex="100" fxLayout="row wrap" class="w-500">
+                  <div class="header w-250" fxFlex="50">Deductions</div><div class="header right w-250" fxFlex="50">INR</div>
+                  <div *ngFor="let ph of data.payHeads">
+                    <div class="w-250" fxFlex="50" *ngIf="ph.payhead_type=='Employees Statutory Deductions'">{{ph.name}}</div>
+                    <div class="right w-250" fxFlex="50" *ngIf="ph.payhead_type=='Employees Statutory Deductions'">{{ph.value}}</div>
+                  <!-- <div class="w-250" fxFlex="50">Mediclaim Deduction</div><div class="right w-250" fxFlex="50">235.00</div>
+                  <div class="w-250" fxFlex="50">Ee LWF contribution</div><div class="right w-250" fxFlex="50">635.00</div>
+                  <div class="w-250" fxFlex="50">Professional Tax</div><div class="right w-250" fxFlex="50">200.00</div>
+                  <div class="w-250" fxFlex="50">Income Tax</div><div class="right w-250" fxFlex="50">6535.00</div>
+                  <div class="w-250" fxFlex="50">Ee PF contribution</div><div class="right w-250" fxFlex="50">6536.00</div> -->
+                  </div>
+                  <div *ngFor="let ph of data.payHeads">
+                  <div *ngIf="ph.payhead_type=='Employees Statutory Deductions'" class="w-250" ihrmsUtil marginTop="10" fxFlex="50">Total Deduction</div><div *ngIf="ph.payhead_type=='Employees Statutory Deductions'" class="right w-250" ihrmsUtil marginTop="10" fxFlex="50">{{ph.value}}</div>
+                </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EMPLOYER CONTRIBUTIONS -->
+            <div class="w-1000" fxFlex="100" fxLayout="row" fxLayoutAlign="start start">
+              <!--EMPLOYER CONTRIBUTIONS-->
+              <div fxFlex="50" fxLayout="row" class="pay-table w-500" ihrmsUtil marginTop="10">
+                <div fxFlex="100" fxLayout="row wrap" class="w-500">
+                  <div class="header w-250" fxFlex="50">EMPLOYER CONTRIBUTIONS</div><div class="header right w-250" fxFlex="50">INR</div>
+                  <div class="w-250" fxFlex="50">Er LWF contribution</div><div class="right w-250" fxFlex="50">20.00</div>
+                  <div class="w-250" fxFlex="50">Er Pension contribution</div><div class="right w-250" fxFlex="50">1756.00</div>
+                  <div class="w-250" fxFlex="50">Er PF contribution</div><div class="right w-250" fxFlex="50">5268.00</div>
+                </div>
+              </div>
+              <!--PAY SUMMARY-->
+              <div fxFlex="50" fxLayout="row" class="pay-table w-500" ihrmsUtil marginTop="10">
+                <div fxFlex="100" fxLayout="row wrap" class="w-500">
+                  <div class="header w-250" fxFlex="50">PAY SUMMARY</div><div class="header right w-250" fxFlex="50">INR</div>
+                  <div class="w-250" fxFlex="50">NET PAY</div><div class="right w-250" fxFlex="50">{{data.user_salary  + data.user_overtime}}</div>
+                  <div class="w-250" fxFlex="50">Claim</div><div class="right w-250" fxFlex="50">0.00</div>
+                  <div class="w-250" fxFlex="50">YTD Gross(incl.Reimbursements)</div><div class="right w-250" fxFlex="50">122005.00</div>
+                  <div class="w-250" fxFlex="50">YTD TAX</div><div class="right w-250" fxFlex="50">16890.00</div>
+                  <div class="w-250" fxFlex="50">YTD Employee PF</div><div class="right w-250" fxFlex="50">68950.00</div>
+                  <div class="w-250" fxFlex="50">YTD Employer PF</div><div class="right w-250" fxFlex="50">55000.00</div>
+                  <div class="w-250" fxFlex="50">YTD Employer Pension</div><div class="right w-250" fxFlex="50">15500.00</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          
+          <p class="w-1000"><small>This is a computer generated document, hence no signature is requiredata.</small></p>
+
+        </section>
+      
+      </div>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

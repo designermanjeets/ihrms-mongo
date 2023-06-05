@@ -1,0 +1,78 @@
+<ng-container *ngIf="formConfig?.action !== constants?.CANCEL else cancelDialog;">
+  <mat-card ihrmsUtil padding='0' class='ihrms-dialog'>
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <ihrms-dynamic-form
+        [action]="formConfig?.action"
+        [controls]="controls$ | async"
+        [flex]='formConfig?.flex || 32'
+        [flexGap]='formConfig?.flexGap || 0'
+        [flexAlignStart]="formConfig?.flexAlignStart"
+        [paddingBottomCust]="'5'"
+        [patchValue]="formConfig?.patchValue"
+        [readonly]="formConfig?.readOnly"
+        [update]="updateForm$"
+        (formSubmitEvent)='formSubmitEvent($event)'
+        (formObjectEvent)='formObjectEvent($event)'
+        [formSubmitOutside]='formSubmitOutside$'
+        [formInvalidControls]='formInvalidControls$'
+      >
+      </ihrms-dynamic-form>
+
+      <section *ngIf="formConfig?.mapData">
+<!--        <div id="map"></div>-->
+        <agm-map style="height:200px" [zoom]='19' [latitude]="formConfig?.mapData?.latitude" [longitude]="formConfig?.mapData?.longitude">
+          <agm-marker [latitude]="formConfig?.mapData?.latitude" [longitude]="formConfig?.mapData?.longitude">
+            <agm-info-window [disableAutoPan]="true">
+                {{formConfig?.mapData?.currentAddress}}
+            </agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </section>
+
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout='row' fxLayoutAlign='end start'>
+      <button type="button" mat-raised-button color='default' class='mid-button' (click)="closeDialog(0)" ihrmsUtil marginRight="10">Cancel</button>
+      <button type="submit" [disabled]="form?.invalid" mat-raised-button color='primary' class='mid-button' (click)='formSubmitted()'>
+        {{formConfig?.okButtonText || 'Request'}}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
+<ng-template #cancelDialog>
+  <mat-card ihrmsUtil padding='0' class='ihrms-dialog'>
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h1 ihrmsUtil marginTop="-10">Are you Sure that you want to Delete this record?</h1>
+
+      <ihrms-dynamic-form
+        [action]="formConfig?.action"
+        [controls]="controls$ | async"
+        [flex]='formConfig?.flex || 32'
+        [flexGap]='0'
+        [paddingBottomCust]="'5'"
+        [patchValue]="formConfig?.patchValue"
+        [readonly]="true"
+        [update]="updateForm$"
+        (formSubmitEvent)='formSubmitEvent($event)'
+        (formObjectEvent)='formObjectEvent($event)'
+        [formSubmitOutside]='formSubmitOutside$'
+        [formInvalidControls]='formInvalidControls$'
+      >
+      </ihrms-dynamic-form>
+
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout='row' fxLayoutAlign='end start'>
+      <button type="button" mat-button mat-raised-button color='default' class='mid-button' (click)="closeDialog(0)">Cancel</button>
+      <button type="submit" mat-button mat-raised-button color='primary' class='mid-button' (click)='formSubmitted()'>
+        OK
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>

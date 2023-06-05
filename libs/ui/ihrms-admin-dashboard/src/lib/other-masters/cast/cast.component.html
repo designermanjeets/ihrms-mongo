@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="castControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='castFormSubmitEvent($event)'
+  (formObjectEvent)='castFormObjectEvent($event)'
+  [formSubmitOutside]='formCastSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onCastSaveEvent($event)'>{{castBtnText + ' Cast' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='castsData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='castsData.columnFit'
+  [title]='castsData.title'
+  [viewAll]='castsData.viewAll'
+  [rowData]='castsData.gridData?.rowData'
+  [columnDefs]='castsData.gridData?.columnDefs'
+  [pagination]="castsData.pagination"
+  [paginationPageSize]="castsData.paginationPageSize"
+  [paginationAutoPageSize]="castsData.paginationAutoPageSize"
+  [updateGridFromOutside]="castsData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onCastsGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

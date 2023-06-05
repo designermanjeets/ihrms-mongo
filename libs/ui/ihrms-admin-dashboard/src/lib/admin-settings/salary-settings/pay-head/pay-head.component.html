@@ -1,0 +1,36 @@
+<section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="payHeadControls$ | async"
+    [flex]='24'
+    [paddingBottomCust]="'5'"
+    (formSubmitEvent)='formPayHeadSubmitEvent($event)'
+    (formObjectEvent)='formPayHeadObjectEvent($event)'
+    (formClickEvent)="formPayHeadClickEvent($event)"
+    [formSubmitOutside]='formPayHeadSubmit$'
+  >
+  </ihrms-dynamic-form>
+  <section ihrmsUtil paddingTop='20' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onPayHeadAddEvent($event)'>{{payHeadBtnText}}</button>
+  </section>
+  <!--./Form-->
+  <!--Grid-->
+  <ihrms-grid
+    *ngIf='payHeadChartData'
+    ihrmsUtil paddingTop='20'
+    [height]='350'
+    [isMultiChartCard]="true"
+    [columnFit]='payHeadChartData.columnFit'
+    [title]='payHeadChartData.title'
+    [viewAll]='payHeadChartData.viewAll'
+    [rowData]='payHeadChartData.gridData?.rowData'
+    [columnDefs]='payHeadChartData.gridData?.columnDefs'
+    [pagination]="payHeadChartData.pagination"
+    [paginationPageSize]="payHeadChartData.paginationPageSize"
+    [paginationAutoPageSize]="payHeadChartData.paginationAutoPageSize"
+    [updateGridFromOutside]="payHeadChartData.gridData?.updateGridFromOutside"
+    (onGridReadyOut)='onPayHeadGridReady($event)'
+  >
+  </ihrms-grid>
+  <!--Grid-->
+</section>

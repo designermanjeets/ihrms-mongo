@@ -1,0 +1,13 @@
+
+@media screen and (max-width: 769px) {
+    .ihrms-profile {
+        margin-right: 0;
+        .avatar-card {
+            width: 50px;
+            min-width: 50px;
+        }
+        .mat-mdc-card-header {
+            padding: 0;
+        }
+    }
+}

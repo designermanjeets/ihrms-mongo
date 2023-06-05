@@ -1,0 +1,53 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+
+      <mat-tab label="System">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 0'>
+          <!--Form-->
+          <ihrms-dynamic-form
+            [controls]="systemControls$ | async"
+            [flex]='24'
+            [paddingBottomCust]="'5'"
+            (formSubmitEvent)='formSystemSubmitEvent($event)'
+            (formObjectEvent)='formSystemObjectEvent($event)'
+            [formSubmitOutside]='formSystemSubmit$'
+          >
+          </ihrms-dynamic-form>
+          <section ihrmsUtil textAlign="right">
+            <button mat-raised-button color='primary' class='small-button' (click)='onSystemSaveEvent($event)'>Save Changes</button>
+          </section>
+          <!--./Form-->
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Employee Type">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 1'>
+          <!--Component-->
+          <ihrms-employee-type></ihrms-employee-type>
+          <!--./Component-->
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Mode OF Employment">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 2'>
+          <!--Component-->
+          <ihrms-mode-of-employment></ihrms-mode-of-employment>
+          <!--./Component-->
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Job Title">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 3'>
+          <!--Component-->
+          <ihrms-job-title></ihrms-job-title>
+          <!--./Component-->
+        </section>
+      </mat-tab>
+
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>
+

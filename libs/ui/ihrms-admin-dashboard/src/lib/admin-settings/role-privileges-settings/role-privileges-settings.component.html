@@ -1,0 +1,94 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab label="Add Role">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 0'>
+          <!--Form-->
+          <ihrms-dynamic-form
+            [controls]="roleControls$ | async"
+            [flex]='24'
+            [flexAlignStart]="true"
+            [flexGap]="10"
+            [paddingBottomCust]="'5'"
+            (formSubmitEvent)='formRoleSubmitEvent($event)'
+            (formObjectEvent)='formRoleObjectEvent($event)'
+            [formSubmitOutside]='formRoleSubmit$'
+          >
+          </ihrms-dynamic-form>
+
+          <section ihrmsUtil paddingTop='10' textAlign="right">
+            <button mat-raised-button color='primary' class='small-button' (click)='onRoleAddEvent($event)'>Save Changes</button>
+          </section>
+          <!--./Form-->
+
+          <!--Grid-->
+          <ihrms-grid
+            *ngIf='rolesData'
+            ihrmsUtil paddingTop='20'
+            [height]='400'
+            [isMultiChartCard]="true"
+            [columnFit]='rolesData.columnFit'
+            [title]='rolesData.title'
+            [viewAll]='rolesData.viewAll'
+            [rowData]='rolesData.gridData?.rowData'
+            [columnDefs]='rolesData.gridData?.columnDefs'
+            [pagination]="rolesData.pagination"
+            [paginationPageSize]="rolesData.paginationPageSize"
+            [paginationAutoPageSize]="rolesData.paginationAutoPageSize"
+            [updateGridFromOutside]="rolesData.gridData?.updateGridFromOutside"
+            (onGridReadyOut)='onRoleGridReady($event)'
+          >
+          </ihrms-grid>
+          <!--Grid-->
+
+        </section>
+      </mat-tab>
+
+      <mat-tab label="Add Role Permission">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 1'>
+          <!--Form-->
+          <ihrms-dynamic-form
+            [controls]="permissionControls$ | async"
+            [flex]='24'
+            [flexAlignStart]="true"
+            [flexGap]="10"
+            [paddingBottomCust]="'5'"
+            (formSubmitEvent)='formPermissionSubmitEvent($event)'
+            (formObjectEvent)='formPermissionObjectEvent($event)'
+            [formSubmitOutside]='formPermissionSubmit$'
+          >
+          </ihrms-dynamic-form>
+          <!--./Form-->
+
+          <!--Grid-->
+          <ihrms-grid
+            *ngIf='permissionsData'
+            ihrmsUtil paddingTop='20'
+            style='height: auto'
+            [isMultiChartCard]="true"
+            [columnFit]='permissionsData.columnFit'
+            [title]='permissionsData.title'
+            [viewAll]='permissionsData.viewAll'
+            [rowData]='permissionsData.gridData?.rowData'
+            [columnDefs]='permissionsData.gridData?.columnDefs'
+            [pagination]="permissionsData.pagination"
+            [paginationPageSize]="permissionsData.paginationPageSize"
+            [paginationAutoPageSize]="permissionsData.paginationAutoPageSize"
+            [updateGridFromOutside]="permissionsData.gridData?.updateGridFromOutside"
+            (onGridReadyOut)='onPermissionGridReady($event)'
+          >
+          </ihrms-grid>
+          <!--Grid-->
+
+          <section ihrmsUtil paddingTop='10' textAlign="right">
+            <button mat-raised-button color='primary' class='small-button' (click)='onPermissionAddEvent($event)'>Save Changes</button>
+          </section>
+
+        </section>
+      </mat-tab>
+
+    </mat-tab-group>
+  </mat-card-content>
+</mat-card>
+

@@ -1,0 +1,9 @@
+<ng-container *ngIf='gridLoaded'>
+  <ihrms-gridster
+    [gridsterOptions]=gridsterOptions
+    [dashboardItems]=dashboardItems
+    [resize$]='gridResize'
+  >
+  </ihrms-gridster>
+</ng-container>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

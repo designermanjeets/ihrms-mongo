@@ -1,0 +1,36 @@
+<div fxLayout='row' ihrmsUtil fxLayoutAlign="start center">
+  <ng-container *ngIf="paramsVal?.actionBtn">
+    <button *ngFor='let btn of paramsVal?.actionBtn; let i = index'
+            (click)='btnAction($event, btn)'
+            ihrmsUtil
+            marginTop='-3'
+            marginRight='-10'
+            mat-icon-button
+            class="micro-button"
+            [disabled]="isDisabled[i]"
+            [attr.ariaLabel]="btn"
+    >
+      <mat-icon [color]="isDisabled[i] ? '' : 'accent'">{{btn}}</mat-icon>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="paramsVal?.type === 'switch'">
+    <mat-slide-toggle [(ngModel)]="isSlideChecked" (ngModelChange)="slideChanged($event, slide)" name="slide" #slide>{{slide.checked ? paramsVal?.options[0] : paramsVal?.options[1]}}</mat-slide-toggle>
+  </ng-container>
+
+  <ng-container *ngIf="paramsVal?.type === 'buttons'">
+
+    <button *ngFor='let name of paramsVal?.names; let i = index'
+            (click)='btnAction($event, name)'
+            ihrmsUtil
+            marginRight='5'
+            mat-button
+            mat-raised-button
+            color='accent'
+            class='micro-button'
+            [disabled]="isDisabled[i]"
+    >
+      {{name}}
+    </button>
+  </ng-container>
+</div>

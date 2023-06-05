@@ -1,0 +1,72 @@
+<section
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' fxLayout='row' fxFill>
+    <div class='ihrms-card'>
+      <mat-card-header
+        ihrmsUtil
+        textAlign='center'
+        class='lightBlueHeader'
+      >
+        Create a New Post
+      </mat-card-header>
+      <mat-card-content ihrmsUtil marginTop='20' class='regu-formcontrols'>
+        <section fxLayout='row' fxLayoutAlign='space-between start'>
+          <div class='ihrms-profile'>
+            <mat-card ihrmsUtil padding='0' class='noshadow avatar-card'>
+              <mat-card-header ihrmsUtil padding='0' fxLayout='row' fxLayoutAlign='center center'>
+                <div mat-card-avatar class='header-image'
+                     [ngStyle]="{backgroundImage: 'url(' + backgroundImg(user?.userImg) + ')'}"></div>
+                <mat-card-title ihrmsUtil marginBottom='6' marginTop='5'>{{user?.username}}</mat-card-title>
+                <mat-card-subtitle ihrmsUtil marginBottom='0'>Engineer</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+          </div>
+          <!--Filter-->
+          <mat-form-field>
+            <mat-label>--Select--</mat-label>
+            <mat-select>
+              <mat-option value='0'>All</mat-option>
+              <mat-option value='1'>1</mat-option>
+              <mat-option value='2'>2</mat-option>
+              <mat-option value='3'>3</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!--./Filter-->
+        </section>
+        <section fxLayout='row wrap' fxLayoutAlign='space-around center'>
+          <mat-form-field fxFlex='100' ihrmsUtil marginTop='30' marginBottom='30'>
+            <mat-label>Textarea</mat-label>
+            <textarea matInput rows='8'></textarea>
+          </mat-form-field>
+          <div fxFlex>
+            <button (click)='fileInput.click()' mat-icon-button color='accent' aria-label='button with an icon'>
+              <mat-icon>photo_camera</mat-icon>
+              <span>Upload Image</span>
+            </button>
+            <input
+              #fileInput
+              type='file'
+              multiple='multiple'
+              accept='image/*'
+              style='display: none'
+              (change)='uploadFileEvt($event)' />
+          </div>
+          <div fxFlex ihrmsUtil textAlign='center'>
+            <button mat-icon-button color='accent' aria-label='button with an icon'>
+              <mat-icon>local_offer</mat-icon>
+              <span>Tag a Person</span>
+            </button>
+          </div>
+          <div fxFlex ihrmsUtil textAlign='right'>
+            <button mat-button mat-raised-button color='accent' class='mid-button radius-20'>
+              <span>Share</span>
+            </button>
+          </div>
+        </section>
+      </mat-card-content>
+    </div>
+  </section>
+</section>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

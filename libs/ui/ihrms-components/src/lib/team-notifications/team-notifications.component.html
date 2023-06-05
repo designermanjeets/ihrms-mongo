@@ -1,0 +1,38 @@
+<section
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' fxLayout='row' fxFill>
+
+    <div class='ihrms-card'>
+      <mat-card-header>
+        Team Notifications
+        <button mat-button mat-raised-button color='accent' class='micro-button view-all'>View All</button>
+      </mat-card-header>
+      <mat-card-content ihrmsUtil marginTop='10'>
+        <section fxLayout='column'>
+          <div fxLayout='column' *ngFor='let item of compData; index as i; let last = last'>
+            <section fxFlex fxLayout='row' fxLayoutAlign="start start">
+              <div fxFlex="45px" fxLayout='column' fxLayoutAlign='end start'>
+                <p *ngFor='let img of item?.data' class='notif-img mat-elevation-z4'>
+                  <img class='img-res' [src]='img.imgSrc' [alt]='img.imgSrc'>
+                </p>
+              </div>
+              <div fxFlex fxLayout='column'>
+                <h1 fxFlex>{{item.header}}</h1>
+                <!--              <p fxFlex class='text-primary'>Lorem Ipsum dolor</p>-->
+<!--                <p fxFlex class="text-right">-->
+<!--                  <button mat-button mat-raised-button color='accent' class='micro-button'>{{item.action}}</button>-->
+<!--                </p>-->
+              </div>
+            </section>
+            <!--Divider-->
+            <mat-divider fxFlex ihrmsUtil marginBottom='5'></mat-divider>
+            <!--Divider-->
+          </div>
+        </section>
+      </mat-card-content>
+    </div>
+  </section>
+</section>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

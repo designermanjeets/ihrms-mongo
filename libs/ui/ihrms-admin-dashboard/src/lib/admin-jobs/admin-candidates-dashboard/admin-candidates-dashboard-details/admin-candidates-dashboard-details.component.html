@@ -1,0 +1,111 @@
+<mat-tab-group #tabGroup
+               [color]='"green"'
+               [backgroundColor]='"primary"'
+               [animationDuration]='0'
+               [selectedIndex]="selectedIndex"
+               (selectedTabChange)="onTabChanged($event)"
+>
+  <mat-tab label='All Candidates'>
+    <mat-card *ngIf='!selectedIndex' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmit($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsAll
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Saved Candidates'>
+    <mat-card *ngIf='selectedIndex === 1' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitSaveCandidate($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsSaved
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Candidates Applied'>
+    <mat-card *ngIf='selectedIndex === 2' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitCandidateApplied($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsApplied
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Candidates Interviewing'>
+    <mat-card *ngIf='selectedIndex === 3' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitCandidateInterview($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsInterviewing
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Candidates Offered'>
+    <mat-card *ngIf='selectedIndex === 4' ihrmsUtil height="100">
+    
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitCandidateOffered($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsOffered
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Candidates Archived'>
+    <mat-card *ngIf='selectedIndex === 5' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)="onFilterSubmitCandidateArchived($event)"
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsArchived
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

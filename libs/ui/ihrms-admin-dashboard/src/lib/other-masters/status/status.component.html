@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="statusControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='statusFormSubmitEvent($event)'
+  (formObjectEvent)='statusFormObjectEvent($event)'
+  [formSubmitOutside]='formStatusSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onStatusSaveEvent($event)'>{{statusBtnText + ' Status' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='statussData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='statussData.columnFit'
+  [title]='statussData.title'
+  [viewAll]='statussData.viewAll'
+  [rowData]='statussData.gridData?.rowData'
+  [columnDefs]='statussData.gridData?.columnDefs'
+  [pagination]="statussData.pagination"
+  [paginationPageSize]="statussData.paginationPageSize"
+  [paginationAutoPageSize]="statussData.paginationAutoPageSize"
+  [updateGridFromOutside]="statussData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onStatussGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

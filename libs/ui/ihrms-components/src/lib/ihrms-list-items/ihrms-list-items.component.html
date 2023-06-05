@@ -1,0 +1,13 @@
+<section
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' fxLayout='row' fxFill>
+    <mat-selection-list #listValue [multiple]="false" class="w-100">
+      <mat-list-option *ngFor="let list of _compData" [value]="listValue" (click)="listSelection(list)">
+        {{list.item}}
+        <mat-icon class="list-arrow">navigate_next</mat-icon>
+      </mat-list-option>
+    </mat-selection-list>
+  </section>
+</section>

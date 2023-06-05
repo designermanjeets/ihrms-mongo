@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="maritalStatusControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='maritalStatusFormSubmitEvent($event)'
+  (formObjectEvent)='maritalStatusFormObjectEvent($event)'
+  [formSubmitOutside]='formMaritalStatusSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onMaritalStatusSaveEvent($event)'>{{maritalStatusBtnText + ' Marital Status' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='maritalStatussData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='maritalStatussData.columnFit'
+  [title]='maritalStatussData.title'
+  [viewAll]='maritalStatussData.viewAll'
+  [rowData]='maritalStatussData.gridData?.rowData'
+  [columnDefs]='maritalStatussData.gridData?.columnDefs'
+  [pagination]="maritalStatussData.pagination"
+  [paginationPageSize]="maritalStatussData.paginationPageSize"
+  [paginationAutoPageSize]="maritalStatussData.paginationAutoPageSize"
+  [updateGridFromOutside]="maritalStatussData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onMaritalStatussGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

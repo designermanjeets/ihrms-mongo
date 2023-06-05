@@ -1,0 +1,40 @@
+<mat-tab-group [color]='"green"'
+               [backgroundColor]='"primary"'
+               [animationDuration]='0'
+               [selectedIndex]="selectedIndex"
+               (selectedTabChange)="onTabChanged($event)"
+>
+  <mat-tab label='My Income Tax'>
+    <mat-card *ngIf='!selectedIndex'ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+        (onFiltersClickHandler)='onFiltersClickHandler($event)'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsIncome
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='My Payroll Historic'>
+    <mat-card *ngIf='selectedIndex === 1'ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsPayroll
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

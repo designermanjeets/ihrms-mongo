@@ -1,0 +1,26 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab label="Company Profile">
+        <ihrms-company-profile *ngIf='selectedIndex === 0'></ihrms-company-profile>
+      </mat-tab>
+      <mat-tab label="Company TAX">
+        <ihrms-company-tax *ngIf='selectedIndex === 1'></ihrms-company-tax>
+      </mat-tab>
+      <mat-tab label="Company EPF">
+        <ihrms-company-epf *ngIf='selectedIndex === 2'></ihrms-company-epf>
+      </mat-tab>
+      <mat-tab label="Company ESI">
+        <ihrms-company-esi *ngIf='selectedIndex === 3'></ihrms-company-esi>
+      </mat-tab>
+      <mat-tab label="Professional Tax">
+        <ihrms-company-prof-tax *ngIf='selectedIndex === 4'></ihrms-company-prof-tax>
+      </mat-tab>
+      <mat-tab label="Labour Welfare Fund">
+        <ihrms-company-labour-welfare-fund *ngIf='selectedIndex === 5'></ihrms-company-labour-welfare-fund>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>

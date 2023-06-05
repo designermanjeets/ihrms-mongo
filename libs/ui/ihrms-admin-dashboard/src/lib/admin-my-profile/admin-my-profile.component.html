@@ -1,0 +1,138 @@
+<section class='page-bg' ihrmsUtil>
+  <section class='pos-rel mat-elevation-z10' fxLayout='row'>
+    <mat-card class='ihrms-card multi-chart-card'>
+      <mat-card-header ihrmsUtil textAlign="center" fontSize="20" class="mat-card-header lightBlueHeader">
+        My Profile
+      </mat-card-header>
+      <!--[ngStyle]='{height: outer?.offsetHeight + "px"}'-->
+      <mat-card-content
+        ihrmsUtil
+        marginTop='10'
+        class='scrollable dark'
+      >
+        <section #inner class='profile-wrap' fxLayout='row wrap' fxLayoutAlign='space-around start'>
+          <section fxFlex='30%'>
+            <mat-card class='mat-elevation-z6 profile-pic-wrap'>
+              <div class='profile-pic'>
+                <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo">
+              </div>
+              <mat-card-content>
+                <p>
+                  <b>About Me: </b>The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+                </p>
+                <section fxLayout='row wrap' *ngIf='mySelf' class='prof-info'>
+                  <div fxFlex='100'><label>Name: </label> {{mySelf.name}}</div>
+                  <div fxFlex='100'><label>Surname: </label> {{mySelf.surname}}</div>
+                  <div fxFlex='100'><label>Email: </label> {{mySelf.emailAddress}}</div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </section>
+          <section fxFlex='70%'>
+            <mat-card class='mat-elevation-z6'>
+<!--              <mat-card-header>-->
+<!--                <mat-card-title>Basic information</mat-card-title>-->
+<!--              </mat-card-header>-->
+              <h2 class="bold light-blue-head">Basic information</h2>
+              <mat-card-content *ngIf='mySelf' class='prof-info'>
+                <section fxLayout='row wrap'>
+                  <div fxFlex='50'><label>Guardian Name: </label> {{mySelf.guardianName}}</div>
+                  <div fxFlex='50'><label>Relation: </label> {{mySelf.relationId}}</div>
+                  <div fxFlex='50'><label>PAN No: </label> {{mySelf.pan}}</div>
+                  <div fxFlex='50'><label>Aadhar ID: </label> {{mySelf.aadhar}}</div>
+                  <div fxFlex='50'><label>Home Phone: </label> {{mySelf.homePhone}}</div>
+                  <div fxFlex='50'><label>Personal Phone: </label> {{mySelf.personalPhone}}</div>
+                  <div fxFlex='50'><label>Emergency Contact: </label> {{mySelf.emergencyContact}}</div>
+                  <div fxFlex='50'><label>Pin Code: </label> {{mySelf.pinCode}}</div>
+                  <div fxFlex='100'><label>Current Address: </label> {{mySelf.currentAddress}}</div>
+                  <div fxFlex='100'><label>Permanent Address: </label> {{mySelf.permanentAddress}}</div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </section>
+          <section fxFlex='50%'>
+            <mat-card class='mat-elevation-z6'>
+<!--              <mat-card-header>-->
+<!--                <mat-card-title>Official information</mat-card-title>-->
+<!--              </mat-card-header>-->
+              <h2 class="bold light-blue-head">Official information</h2>
+              <mat-card-content *ngIf='mySelf' class='prof-info'>
+                <section fxLayout='row wrap'>
+                  <div fxFlex='50'><label>Title: </label> {{mySelf.titleId}}</div>
+                  <div fxFlex='50'><label>Username: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Employee Code: </label> {{mySelf.employeeTypeId}}</div>
+                  <div fxFlex='50'><label>Gender: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Date Of Birth: </label> {{mySelf.dob | date:'dd/mm/yyyy'}}</div>
+                  <div fxFlex='50'><label>Marital Status: </label> {{mySelf.maritalStatusId}}</div>
+                  <div fxFlex='50'><label>Blood Group: </label> {{mySelf.bloodGroupId}}</div>
+                  <div fxFlex='50'><label>Nationality: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Ethnicity: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Cast: </label> {{mySelf.castId}}</div>
+                  <div fxFlex='50'><label>Religion: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Job Title: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Unit/Department: </label> {{mySelf.departmentId}}</div>
+                  <div fxFlex='50'><label>Designation: </label> {{mySelf.designationId}}</div>
+                  <div fxFlex='50'><label>Reporting Manager: </label> {{mySelf.reportingManagerId}}</div>
+                  <div fxFlex='50'><label>Employee Shift: </label> {{mySelf.shiftId}}</div>
+                  <div fxFlex='50'><label>Overtime: </label> {{mySelf.shiftId}}</div>
+                  <div fxFlex='50'><label>Time Office Policy: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Punch In A Day: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Role: </label> {{mySelf.roleNames | json}}</div>
+                  <div fxFlex='50'><label>Employee Type: </label> {{mySelf.employeeTypeId}}</div>
+                  <div fxFlex='50'><label>Mode Of Employment: </label> {{mySelf.modeOfEmployementId}}</div>
+                  <div fxFlex='50'><label>Joining Date: </label> {{mySelf.doj | date:'dd/mm/yyyy'}}</div>
+                  <div fxFlex='50'><label>Date Of Confirmation: </label> {{mySelf.doc | date:'dd/mm/yyyy'}}</div>
+                  <div fxFlex='50'><label>Date Of Relieving: </label> {{mySelf.dor | date:'dd/mm/yyyy'}}</div>
+                  <div fxFlex='50'><label>Status: </label> {{mySelf.isActive}}</div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </section>
+          <section fxFlex='50%'>
+            <mat-card class='mat-elevation-z6'>
+<!--              <mat-card-header>-->
+<!--                <mat-card-title>Bank information</mat-card-title>-->
+<!--              </mat-card-header>-->
+              <h2 class="bold light-blue-head">Bank information</h2>
+              <mat-card-content *ngIf='mySelf' class='prof-info'>
+                <section fxLayout='row wrap'>
+                  <div fxFlex='50'><label>Bank Name: </label> {{mySelf.titleId}}</div>
+                  <div fxFlex='50'><label>Account No: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>IFSC Code: </label> {{mySelf.employeeTypeId}}</div>
+                  <div fxFlex='50'><label>Branch: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>Location: </label> {{mySelf.dob | date:'dd/mm/yyyy'}}</div>
+                  <div fxFlex='50'><label>ESI No.: </label> {{mySelf.maritalStatusId}}</div>
+                  <div fxFlex='50'><label>PF No.: </label> {{mySelf.maritalStatusId}}</div>
+                </section>
+              </mat-card-content>
+<!--              <mat-card-header>-->
+<!--                <mat-card-title>Qualification</mat-card-title>-->
+<!--              </mat-card-header>-->
+              <h2 class="bold light-blue-head">Qualification</h2>
+              <mat-card-content *ngIf='mySelf' class='prof-info'>
+                <section fxLayout='row wrap'>
+                  <div fxFlex='50'><label>Bank Name: </label> {{mySelf.titleId}}</div>
+                  <div fxFlex='50'><label>Account No: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>IFSC Code: </label> {{mySelf.employeeTypeId}}</div>
+                  <div fxFlex='50'><label>Branch: </label> {{mySelf.userName}}</div>
+                </section>
+              </mat-card-content>
+<!--              <mat-card-header>-->
+<!--                <mat-card-title>Experience</mat-card-title>-->
+<!--              </mat-card-header>-->
+              <h2 class="bold light-blue-head">Experience</h2>
+              <mat-card-content *ngIf='mySelf' class='prof-info'>
+                <section fxLayout='row wrap'>
+                  <div fxFlex='50'><label>Account No: </label> {{mySelf.userName}}</div>
+                  <div fxFlex='50'><label>IFSC Code: </label> {{mySelf.employeeTypeId}}</div>
+                  <div fxFlex='50'><label>Branch: </label> {{mySelf.userName}}</div>
+                </section>
+              </mat-card-content>
+            </mat-card>
+          </section>
+        </section>
+      </mat-card-content>
+    </mat-card>
+  </section>
+</section>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>

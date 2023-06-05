@@ -1,0 +1,50 @@
+<section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+    <!--Form-->
+    <ihrms-dynamic-form
+        [controls]="controls$ | async"
+        [flex]='24'
+        [flexAlignStart]='true'
+        [flexGap]='15'
+        [paddingBottomCust]="'5'"
+        (formSubmitEvent)='formSubmitEvent($event)'
+        (formObjectEvent)='formObjectEvent($event)'
+        [formSubmitOutside]='formSubmit$'
+    >
+    </ihrms-dynamic-form>
+    <section ihrmsUtil paddingTop='10' marginTop="-50" textAlign="left" class="btn-search">
+        <button mat-raised-button color='primary' class='small-button' [disabled]="!form?.value?.salary_structure" (click)='onSelect($event)'>Select</button>
+    </section>
+    <section ihrmsUtil paddingTop='10' textAlign="right">
+        <button mat-raised-button color='primary' class='small-button' (click)='onAddEventSalary($event)'>Save</button>
+      </section>
+</section>
+   
+   
+    <!--./Form-->
+
+    <!--Grid-->
+    <ihrms-grid
+        *ngIf='formulaChartData'
+        ihrmsUtil paddingTop='20'
+        [height]='500'
+        [isMultiChartCard]="true"
+        [columnFit]='formulaChartData.columnFit'
+        [title]='formulaChartData.title'
+        [viewAll]='formulaChartData.viewAll'
+        [rowData]='formulaChartData.gridData?.rowData'
+        [columnDefs]='formulaChartData.gridData?.columnDefs'
+        [pagination]="formulaChartData.pagination"
+        [paginationPageSize]="formulaChartData.paginationPageSize"
+        [paginationAutoPageSize]="formulaChartData.paginationAutoPageSize"
+        [updateGridFromOutside]="formulaChartData.gridData?.updateGridFromOutside"
+        [editType]="''"
+        [stopEditingWhenCellsLoseFocus]="true"
+        [suppressClickEdit]="false"
+        (onGridReadyOut)='onFormulaGridReady($event)'
+        (onCellValueChangedOut)='onCellValueChangedOut($event)'
+    >
+    </ihrms-grid>
+    <!--Grid-->
+
+    
+  

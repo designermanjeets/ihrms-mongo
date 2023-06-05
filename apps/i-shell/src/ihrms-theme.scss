@@ -1,0 +1,205 @@
+@use "sass:math";
+@use 'sass:map';
+@use '@angular/material' as mat;
+@use './node_modules/@angular/material/core/theming/theming';
+@use './node_modules/@angular/material/core/typography/typography';
+@use './node_modules/@angular/material/core/typography/typography-utils';
+
+//Component Styles
+@use '../../../libs/ui/ihrms-sidebar/src/lib/ihrms-sidebar.theme.scss' as ihrmsidebar;
+@use '../../../libs/ui/ihrms-navbar/src/lib/ihrms-navbar.theme.scss' as ihrmsnavbar;
+@use '../../../libs/ui/ihrms-components/src/lib/ihrms-component.theme.scss' as ihrmscomponents;
+@use '../../../libs/ui/ihrms-components/src/lib/ihrms-dashbaord-all/ihrms-dashbaord-all.component' as ihrmsdashboardall;
+@use '../../../libs/ui/ihrms-gridster/src/lib/ihrms-gridster.theme.scss' as ihrmsgridster;
+@use '../../../libs/ui/ihrms-dynamic-forms/src/lib/ihrms-dynamic-forms.theme' as ihrmsdynamicforms;
+@use '../../../libs/ui/ihrms-emp-dashboard/src/lib/create-emp-post/create-emp-post.theme.scss' as ihrmsempcreatepost;
+@use '../../../libs/ui/ihrms-grid/src/lib/ihrms-agrid.theme.scss' as ihrmsagrid;
+@use './styles.scss' as ihrmsstyles;
+
+@include mat.core();
+
+//
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: white;
+
+$ihrms-primary-palette: (
+  50: #e0f6fa,
+  100: #b1e8f2,
+  200: #7fdaea,
+  300: #4dcae0,
+  400: #29bfd8,
+  500: #12b4d1,
+  600: #0fa5be,
+  700: #0a90a4,
+  800: #077c8c,
+  900: #045a61,
+  A100 : #5858ff,
+  A200 : #2525ff,
+  A400 : #0000f1,
+  A700 : #0000d8,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text
+  )
+);
+
+$ihrms-accent-palette: (
+  50: #fff8e1,
+  100: #ffebb3,
+  200: #ffdf81,
+  300: #ffd34e,
+  400: #ffc827,
+  500: #ffbf06,
+  600: #ffb101,
+  700: #ff9e02,
+  800: #ff8d03,
+  900: #ff6d04,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text
+  )
+);
+
+// Define a light theme
+$ihrms-light-primary: mat.define-palette($ihrms-primary-palette, 700);
+$ihrms-light-accent: mat.define-palette($ihrms-accent-palette, 800);
+
+$ihrms-typography: mat.define-legacy-typography-config(
+
+  $font-family: "'Lato',sans-serif",
+
+  $display-4: mat.define-typography-level(112px, 112px, 300, $letter-spacing: -0.05em),
+  $display-3: mat.define-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+  $display-2: mat.define-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+  $display-1: mat.define-typography-level(34px, 40px, 400),
+  $headline:  mat.define-typography-level(28px, 32px, 700),
+  $title:         mat.define-typography-level(20px, 32px, 500),
+  $subheading-2:  mat.define-typography-level(16px, 28px, 400),
+  $subheading-1:  mat.define-typography-level(15px, 24px, 400),
+  $body-2:        mat.define-typography-level(15px, 24px, 500),
+  $body-1:        mat.define-typography-level(15px, 20px, 400),
+  $caption:       mat.define-typography-level(12px, 20px, 400),
+  $button:        mat.define-typography-level(18px, 14px, 500),
+  $input:         mat.define-typography-level(16px, 1.125, 400)
+
+);
+
+$ihrms-light-theme: mat.define-light-theme((
+  color: (
+    primary: $ihrms-light-primary,
+    accent: $ihrms-light-accent,
+  ),
+  typography: $ihrms-typography,
+  density: -1,
+));
+
+
+// Apply the light theme by default
+@include mat.core();
+@include mat.core-theme($ihrms-light-theme);
+@include mat.all-component-themes($ihrms-light-theme);
+
+// Libs
+@include ihrmsstyles.style-theme($ihrms-light-theme);
+@include ihrmsidebar.sidebar-theme($ihrms-light-theme);
+@include ihrmsnavbar.navbar-theme($ihrms-light-theme);
+@include ihrmscomponents.components-theme($ihrms-light-theme);
+@include ihrmsdashboardall.dashboard-all-theme($ihrms-light-theme);
+@include ihrmsgridster.gridster-theme($ihrms-light-theme);
+@include ihrmsdynamicforms.dynamic-forms-theme($ihrms-light-theme);
+@include ihrmsempcreatepost.create-emp-post-theme($ihrms-light-theme);
+@include ihrmsagrid.ihrms-agrid-theme($ihrms-light-theme);
+
+
+
+$color-config: mat.get-color-config($ihrms-light-theme);
+// Get the primary color palette from the color-config.
+$primary-palette: map.get($color-config, 'primary');
+$accent-palette: map.get($color-config, 'accent');
+
+
+.mat-mdc-text-field-wrapper.mdc-text-field--outlined {
+  font-size: 14px;
+  .mat-mdc-form-field-infix {
+    padding-top: 0;
+    padding-bottom: 0;
+    min-height: 30px;
+    line-height: 30px;
+  }
+  .mdc-notched-outline {
+    .mdc-notched-outline__leading, .mdc-notched-outline__trailing {
+      border-radius: 0
+    }
+  }
+  &:not(.mdc-text-field--disabled) {
+    .mdc-notched-outline {
+      .mdc-notched-outline__leading, .mdc-notched-outline__trailing {
+        border-color: mat.get-color-from-palette($ihrms-light-primary, 700);
+      }
+    }
+  }
+}
+.mat-mdc-form-field-subscript-wrapper {
+  height: 6px;
+}
+.mat-mdc-select, .mat-mdc-option .mdc-list-item__primary-text {
+  font-size: 14px !important;
+}
+.mat-mdc-option {
+  min-height: 36px !important;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  width: 35px;
+  height: 30px;
+  padding: 4px;
+  line-height: 30px;
+}
+
+.primary {
+  background-color: mat.get-color-from-palette($ihrms-light-primary, 700);
+  color: white;
+  h1 {
+    color: white;
+  }
+}
+.accent {
+  background-color: mat.get-color-from-palette($accent-palette, 700);
+  color: white;
+}
+.default {
+  background-color: white;
+}
+// All the custom Style Below
+h1 { color: mat.get-color-from-palette($primary-palette, 900); }
+a { color: mat.get-color-from-palette($primary-palette, 900); }
+.info-card {
+  background-color: mat.get-color-from-palette($accent-palette, 50);
+}
+.page-bg {
+  background-color: mat.get-color-from-palette($primary-palette, 50);
+}

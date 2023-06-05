@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="relationControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='relationFormSubmitEvent($event)'
+  (formObjectEvent)='relationFormObjectEvent($event)'
+  [formSubmitOutside]='formRelationSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onRelationSaveEvent($event)'>{{relationBtnText + ' Relation' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='relationsData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='relationsData.columnFit'
+  [title]='relationsData.title'
+  [viewAll]='relationsData.viewAll'
+  [rowData]='relationsData.gridData?.rowData'
+  [columnDefs]='relationsData.gridData?.columnDefs'
+  [pagination]="relationsData.pagination"
+  [paginationPageSize]="relationsData.paginationPageSize"
+  [paginationAutoPageSize]="relationsData.paginationAutoPageSize"
+  [updateGridFromOutside]="relationsData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onRelationsGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

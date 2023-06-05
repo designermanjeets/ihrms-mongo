@@ -1,0 +1,161 @@
+<section *ngIf='filterForm' class="regu-formcontrols compact-fields" fxLayout='row' fxLayoutAlign='space-between start'>
+
+  <button *ngIf='filterConfig?.addButton' ihrmsUtil marginTop="2" mat-raised-button color='primary' class='small-button' (click)='onAddFun()'>
+    {{filterConfig?.addButtonText || 'Add'}}
+  </button>
+
+  <div *ngIf='filterConfig?.uploadButton' fxFlex="200px" fxLayout='row wrap' fxLayoutAlign='space-between start' ihrmsUtil marginLeft="0" class='btn-upload pos-rel'>
+<!--    <p fxFlex='100' *ngIf='selectedFile?.name'>{{selectedFile?.name}}</p>-->
+    <!-- Display files names -->
+    <mat-form-field fxFlex>
+      <input matInput (click)="uploader.click()" readonly name="name" [placeholder]='selectedFile?.name || filterConfig?.uploadText || "Select File"' />
+    </mat-form-field>
+    <!-- Browse Button -->
+    <button
+      fxFlex
+      (click)="uploader.click()"
+      type='button'
+      mat-raised-button
+      color="accent"
+      ihrmsUtil
+      marginBottom='0'
+      class='small-button'
+    >
+      Upload
+    </button>
+    
+    <!-- Fetch selected filed on change -->
+    <input
+      #uploader
+      id="inputGroupFile01"
+      type="file"
+      ngFileSelect
+      [options]="options"
+      (uploadOutput)="onUploadOutput($event)"
+      [uploadInput]="uploadInput"
+      (click)="uploader.value = ''"
+      style="display: none;"
+    />
+  </div>
+  <small class='sampleDownloadText' *ngIf='filterConfig?.uploadSample?.text'>
+    <a [href]='filterConfig?.uploadSample?.url'>{{filterConfig?.uploadSample?.text}}</a>
+  </small>
+
+  <section fxFlex>
+    <form [formGroup]="filterForm" (ngSubmit)="onSubmit()" fxLayout='row' fxLayoutAlign='end center' fxLayoutGap='15px' *ngIf="filterConfig?.filterForm !== false">
+
+     <mat-form-field fxFlex='10' *ngIf='filterConfig?.attendanceControls'>
+        <mat-label>--Select--</mat-label>
+        <mat-select formControlName="attendanceFilter">
+          <mat-option value='Day'>Day Wise</mat-option>
+          <mat-option value='Week'>Week Wise</mat-option>
+          <mat-option value='Month'>Month Wise</mat-option>
+          <mat-option value='Year'>Year Wise</mat-option>
+          <mat-option value='Employee'>Employee Wise</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field fxFlex='10' *ngIf='filterConfig?.leaveControls'>
+        <mat-label>--Select--</mat-label>
+        <mat-select formControlName="leaveFilter">
+          <mat-option value='Day'>Day Wise</mat-option>
+          <mat-option value='Week'>Week Wise</mat-option>
+          <mat-option value='Month'>Month Wise</mat-option>
+          <mat-option value='Year'>Year Wise</mat-option>
+          <mat-option value='Employee'>Employee Wise</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <mat-form-field fxFlex='15'>
+        <mat-label>Search</mat-label>
+        <input matInput formControlName="textFilter" placeholder="Search text">
+      </mat-form-field> -->
+
+      <div fxLayout="row" fxFlex='175px' *ngIf='filterConfig?.userOptions?.length'>
+        <mat-form-field ihrmsUtil marginTop='8'>
+          <mat-select formControlName="attendanceFilter" placeholder="--Select User--">
+            <mat-option *ngFor="let opt of filterConfig?.userOptions" [value]="opt.username">{{opt.username}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxFlex='175px' *ngIf='filterConfig?.moduleOptions'>
+        <mat-form-field ihrmsUtil marginTop='8'>
+          <mat-select formControlName="modulesFilter" placeholder="--Select Module--">
+            <mat-option *ngFor="let opt of moduleOptions" [value]="opt.name">{{opt.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxFlex='175px'  *ngIf='filterConfig?.userOptions_leave?.length'>
+        <mat-form-field ihrmsUtil marginTop='8'>
+          <mat-select formControlName="leaveFilter" id="form_filter_user" placeholder="--Select User--">
+            <mat-option *ngFor="let opt of filterConfig?.userOptions_leave" [value]="opt._id">{{opt.username}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+      <div fxLayout="row" fxFlex='235px'>
+        <mat-form-field ihrmsUtil marginTop='8'>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date">
+          </mat-date-range-input>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+
+          <mat-error *ngIf="filterForm.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+          <mat-error *ngIf="filterForm.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+        </mat-form-field>
+      </div>
+      <button
+          ihrmsUtil
+          mat-button
+          mat-raised-button
+          color="primary"
+          class="small-button"
+          [attr.ariaLabel]="'Search'"
+      >
+        Search
+      </button>
+    </form>
+  </section>
+
+  <div
+    *ngIf='filterConfig?.swapButton'>
+    <button
+      fxFlex="150px"
+      (click)="onSwapClick()"
+      type='button'
+      mat-raised-button
+      color="accent"
+      ihrmsUtil
+      marginBottom='0'
+      class='small-button'
+    >
+      Swap/Change Shift
+    </button>
+  </div>
+
+  <button (click)="exportExcel('print')" fxFlex='80px'ihrmsUtil marginLeft='10' mat-icon-button color='primary' aria-label='button with an icon' class="small-button ihrms-flex">
+    <mat-icon ihrmsUtil marginRight='5'>print</mat-icon>
+    <span>Print</span>
+  </button>
+ 
+  <button *ngIf='filterConfig?.show_Export_Button' fxFlex='90px' ihrmsUtil mat-icon-button marginTop='1' color='primary' aria-label='button with an icon' class="small-button ihrms-flex" [matMenuTriggerFor]="exportMenu">
+    <mat-icon ihrmsUtil marginRight='5' marginTop='-1'>file_download</mat-icon>
+    <span>Export</span>
+  </button>
+  
+</section>
+
+<mat-menu #exportMenu="matMenu">
+  <button (click)="downloadAsPDF()" mat-menu-item>
+    <mat-icon color="primary">picture_as_pdf</mat-icon>
+    <span>PDF</span>
+  </button>
+  <button (click)="exportExcel('excel')" mat-menu-item>
+    <mat-icon color="primary">description</mat-icon>
+    <span>Excel</span>
+  </button>
+</mat-menu>

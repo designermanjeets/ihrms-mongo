@@ -1,0 +1,19 @@
+<section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="controls$ | async"
+    [flex]='24'
+    [flexAlignStart]='true'
+    [flexGap]='15'
+    [paddingBottomCust]="'5'"
+    (formSubmitEvent)='formSubmitEvent($event)'
+    (formObjectEvent)='formObjectEvent($event)'
+    (formClickEvent)="formClickEvent($event)"
+    [formSubmitOutside]='formSubmit$'
+  >
+  </ihrms-dynamic-form>
+  <section ihrmsUtil paddingTop='20' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onSave($event)'>Save Changes</button>
+  </section>
+  <!--./Form-->
+</section>

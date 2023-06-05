@@ -1,0 +1,24 @@
+<ng-container *ngIf='gridLoaded'>
+  <ihrms-gridster
+    [gridsterOptions]=gridsterOptions
+    [dashboardItems]=dashboardItems
+    [resize$]='gridResize'
+  >
+  </ihrms-gridster>
+</ng-container>
+
+<!-- Dialog template -->
+<ng-template #myDialog let-data>
+  <h2 matDialogTitle>Attendance Correction</h2>
+  <mat-dialog-content class='rowDetailContent'>
+    <ng-container *ngFor='let d of data | keyvalue'>
+      <p *ngIf='d.key !== "actionBtn"'>
+        <label class='bold' ihrmsUtil marginRight='10' width='40'>{{d.key}}:</label>{{d.value}}
+      </p>
+    </ng-container>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button matDialogClose color="primary" class='mid-button'>Dismiss</button>
+  </mat-dialog-actions>
+</ng-template>
+<!-- Dialog template #2 -->

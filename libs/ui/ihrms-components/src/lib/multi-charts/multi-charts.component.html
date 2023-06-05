@@ -1,0 +1,148 @@
+<section
+  [ngStyle]="{ 'border-radius': _radius+'px'}"
+  [ngClass]="palette || 'default' "
+>
+  <section class='scrollable dark' fxLayout='row' ihrmsUtil [ngClass]="{'noTitle': !title, 'uploadExist': filterConfig?.uploadButton}" [class.isMobileFullHeight]="{ 'isMobileFullHeight': isMobileFullHeight}">
+
+    <div class='ihrms-card regu-formcontrols multi-chart-card'>
+      <mat-card-header *ngIf='title' ihrmsUtil textAlign="center" fontSize="20" class="mat-card-header lightBlueHeader">
+        {{title}}
+      </mat-card-header>
+      <mat-card-content
+        ihrmsUtil
+        marginTop='10'
+        [ngClass]='{ "gridComponentFullHeight": gridComponentFullHeight }'
+        [class.isMobileFullHeight]="{ 'isMobileFullHeight': isMobileFullHeight}"
+      >
+        <p ihrmsUtil marginBottom='5' textAlign="right" *ngIf='filters !== false'>
+          <ihrms-filters
+            ihrmsUtil
+            textAlign='right'
+            [filterConfig]=filterConfig
+            (onFiltersClickHandler)='onFiltersClickHandlerFun($event)'
+          >
+          </ihrms-filters>
+          <!--./Filter-->
+        </p>
+        <section class='card-content-section' fxLayout='row' [ngClass]='{ "flex-start": flexStart }'><!-- fxLayoutGap='50px' for calc( chart.flex - 50px)-->
+
+          <section *ngIf='gridHeaderTemplate'>
+            <ng-container [ngTemplateOutlet]="gridHeaderTemplate"></ng-container>
+          </section>
+
+          <ng-container *ngFor='let chart of compData'>
+            <mat-card
+              *ngIf='chart.series'
+              class='mat-elevation-z5 radius-10 chart-card'
+              ihrmsUtil
+              marginBottom='10'
+              [height]="chart.height"
+              [style.height.px]="isMobile ? '400': chart.height"
+              [fxFlex]="isMobile ? '100': chart.flex"
+            >
+              <mat-card-content fxFlex.lt-md='400px' fxFlex='100' fxLayout='column' ihrmsUtil [attr.height]='isMobile ? null : 100' #outerElement>
+                <ihrms-chart
+                  fxFlex
+                  [multiChart]='true'
+                  [charTitle]=chart.title
+                  [series]=chart.series
+                  [attr.height]='isMobile ? null : getHeight(outerElement?.offsetHeight)'
+                  [xAxisCategories]=chart.xAxisCategories
+                  (onClickHandler)="onClickHandlerFun($event)"
+                >
+                </ihrms-chart>
+              </mat-card-content>
+          </mat-card>
+          <ng-container *ngIf='chart.gridData'>
+            <section [fxFlex]="isMobile ? '100': chart.flex" ihrmsUtil width='100' [marginBottom]="chart?.marginBottom" [marginTop]="chart?.marginTop" [height]="chart.height" [style.height.px]="isMobile ? chart.mobileFlexInPx: 'auto'" #outerElement>
+              <ihrms-grid
+                #ihrmsgrid
+                [columnFit]='chart.columnFit'
+                [height]='getHeight(outerElement?.offsetHeight)'
+                [title]='chart.title'
+                [isMultiChartCard]="true"
+                [viewAll]='chart.viewAll'
+                [rowData]='chart.gridData.rowData'
+                [columnDefs]='chart.gridData.columnDefs'
+                [pagination]="chart.pagination"
+                [addRemoveRowButtons]="chart.addRemoveRowButtons"
+                [suppressClickEdit]="chart.gridData?.suppressClickEdit"
+                [stopEditingWhenCellsLoseFocus]="chart.gridData?.stopEditingWhenCellsLoseFocus"
+                [paginationPageSize]="chart.paginationPageSize"
+                [paginationAutoPageSize]="chart.paginationAutoPageSize"
+                [updateGridFromOutside]="chart.gridData?.updateGridFromOutside"
+                [isRowMaster]="chart?.isRowMaster"
+                [masterDetail]="chart?.masterDetail"
+                [rowClassRules]="chart?.rowClassRules"
+                [editType]="chart?.editType"
+                [detailCellRendererParams]="chart?.detailCellRendererParams"
+                (onClickHandler)='onClickHandlerFun($event)'
+                (onGridReadyOut)="onGridReadyOut($event)"
+              >
+              </ihrms-grid>
+              <!-- <div *ngIf="filterConfig?.confirmDutyRoster" class="confirmroster">
+                <button
+                  [disabled]="!ihrmsgrid?.rowData?.length"
+                  fxFlex="150px"
+                  type='button'
+                  mat-raised-button
+                  color="accent"
+                  ihrmsUtil
+                  marginBottom='0'
+                  class='small-button'
+                  (click)="onConfirmRoster(ihrmsgrid?.rowData)"
+                >
+                  Confirm Roster
+                </button>
+              </div> -->
+            </section>
+          </ng-container>
+          
+          <!-- List Item Component -->
+          <mat-card
+            *ngIf='chart.list_items'
+            class='mat-elevation-z5 radius-10 chart-card'
+            ihrmsUtil
+            marginBottom='10'
+            [height]=chart.height
+            [fxFlex]=chart.flex
+          >
+            <mat-card-content fxFlex='100' fxLayout='column' ihrmsUtil height='100' #outerElement>
+              <h1 fxFlex='100' class='mat-headline font16' ihrmsUtil paddingLeft='15' paddingTop='5' fxLayout='row' fxLayoutAlign='space-between start'>
+                {{chart.title}}
+              </h1>
+              <ihrms-list-items
+                [compData]="chart.list_items"
+                (onClickHandler)='onClickHandlerFun($event)'
+              >
+              </ihrms-list-items>
+            </mat-card-content>
+          </mat-card>
+          <!-- ./List Item Component -->
+
+          <!--Pivot Component-->
+          <ng-container *ngIf='chart.pivotData'>
+            <section [fxFlex]=chart.flex ihrmsUtil width='100' [marginBottom]="chart?.marginBottom" [marginTop]="chart?.marginTop" [height]=chart.height #outerElement>
+              <ihrms-syncfusion-pivot
+                [pivotConfig]="chart.pivotData"
+              ></ihrms-syncfusion-pivot>
+            </section>
+          </ng-container>
+          <!--./Pivot Component-->
+
+          <!--File Manager Component-->
+          <ng-container *ngIf='chart.fileManagerData'>
+            <section [fxFlex]=chart.flex ihrmsUtil width='100' [marginBottom]="chart?.marginBottom" [marginTop]="chart?.marginTop" [height]=chart.height #outerElement> 
+              <ihrms-file-manager
+                [fileManagerConfig]="chart.fileManagerData.filemanagerConfig"
+              ></ihrms-file-manager>
+            </section>
+          </ng-container>
+          <!--./File Manager Component-->
+
+        </ng-container>
+      </section>
+      </mat-card-content>
+    </div>
+  </section>
+</section>

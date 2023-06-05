@@ -1,0 +1,74 @@
+<mat-toolbar class='mat-elevation-z4 ihrms-navbar'>
+
+  <button (click)='onToggleSidebar()' mat-icon-button aria-label="Toggle Menu Button">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <h1 fxHide.lt-md ihrmsUtil marginLeft='20'> Welcome {{user?.username}}</h1>
+
+  <!--Global Search-->
+  <ihrms-search
+    fxHide.lt-md
+    fxFlex='45'
+    ihrmsUtil marginLeft='30' marginTop='6'
+    [placeholder]='placeholder'
+
+  ></ihrms-search>
+  <!--./Global Search-->
+
+  <span class="ihrms-spacer"></span>
+
+  <button color='primary' (click)='openDashboard()' mat-icon-button ihrmsUtil marginRight='0' aria-label="icon-button Dashboard">
+    <mat-icon class='material-icons-round'>dashboard</mat-icon>
+    <!-- Include text description of the icon's meaning for screen-readers -->
+    <span class="cdk-visually-hidden">
+      Show Dashboard Services for user
+    </span>
+  </button>
+
+  <button color='primary' (click)='openOrgChart()' mat-icon-button ihrmsUtil marginRight='0' aria-label="icon-button Org Chart">
+    <mat-icon class='material-icons-round'>account_tree</mat-icon>
+    <!-- Include text description of the icon's meaning for screen-readers -->
+    <span class="cdk-visually-hidden">
+      Show Organization Chart for user
+    </span>
+  </button>
+
+  <button color='primary' (click)='onToggleNotification()' mat-icon-button ihrmsUtil marginRight='20' aria-label="icon-button Notification">
+    <mat-icon matBadge="15" matBadgeColor="warn">notifications_active</mat-icon>
+    <!-- Include text description of the icon's meaning for screen-readers -->
+    <span class="cdk-visually-hidden">
+      Notification icon with overlaid badge showing the number {{notificationMenus.length}}
+    </span>
+  </button>
+
+  <div class='ihrms-profile'>
+    <mat-card ihrmsUtil padding='0' class='noshadow avatar-card'>
+      <mat-card-header fxLayout='row' fxLayoutAlign='center center' ihrmsUtil paddingTop='4'>
+        <div mat-card-avatar class="header-image" [ngStyle]="{backgroundImage: 'url(' + backgroundImg(user?.userImg) + ')'}"></div>
+        <mat-card-title fxHide.lt-md ihrmsUtil marginBottom='-3'>{{user?.username}}</mat-card-title>
+        <mat-card-subtitle fxHide.lt-md ihrmsUtil marginBottom='0'>{{user?.designation}}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <button mat-icon-button [matMenuTriggerFor]="profileMenu" aria-label="Profile button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <!-- profileMenu -->
+  <mat-menu #profileMenu="matMenu">
+    <button (click)='onProfileClick($event, m)' mat-menu-item *ngFor='let m of profileMenuItems'>
+      <mat-icon>{{m.icon}}</mat-icon>
+      <span>{{m.text}}</span>
+    </button>
+  </mat-menu>
+
+  <!-- notificationMenus -->
+  <mat-menu #notificationMenu="matMenu">
+    <button mat-menu-item *ngFor='let m of notificationMenus'>
+      <span>{{m.text}}</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

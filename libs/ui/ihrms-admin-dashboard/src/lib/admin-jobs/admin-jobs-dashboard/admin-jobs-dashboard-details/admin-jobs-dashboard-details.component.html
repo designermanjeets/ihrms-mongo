@@ -1,0 +1,152 @@
+<mat-tab-group #tabGroup
+               [color]='"green"'
+               [backgroundColor]='"primary"'
+               [animationDuration]='0'
+               [selectedIndex]="selectedIndex"
+               (selectedTabChange)="onTabChanged($event)"
+>
+  <mat-tab label='Manage Jobs'>
+    <mat-card *ngIf='!selectedIndex' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsAll
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Manage Resumes'>
+    <mat-card *ngIf='selectedIndex === 1' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsSaved
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Shortlist Candidates'>
+    <mat-card *ngIf='selectedIndex === 2' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsApplied
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Interview Questions'>
+    <mat-card *ngIf='selectedIndex === 3' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsInterviewing
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Offer Approvals'>
+    <mat-card *ngIf='selectedIndex === 4' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsOffered
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Candidates List'>
+    <mat-card *ngIf='selectedIndex === 5' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsArchived
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Schedule timing'>
+    <mat-card *ngIf='selectedIndex === 6' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsArchived
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Aptitude Result'>
+    <mat-card *ngIf='selectedIndex === 7' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsArchived
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label='Applied Candidates'>
+    <mat-card *ngIf='selectedIndex === 8' ihrmsUtil height="100">
+      <ihrms-filters
+        ihrmsUtil
+        textAlign='right'
+        [filterConfig]='filterConfig'
+      >
+      </ihrms-filters>
+      <ihrms-gridster
+        [gridsterOptions]=gridsterOptions
+        [dashboardItems]=dashboardItemsArchived
+        [resize$]='gridResize'
+      >
+      </ihrms-gridster>
+    </mat-card>
+  </mat-tab>
+</mat-tab-group>

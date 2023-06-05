@@ -1,0 +1,37 @@
+<!--Form-->
+<ihrms-dynamic-form
+  [controls]="bloodGroupControls$ | async"
+  [flex]='24'
+  [paddingBottomCust]="'5'"
+  (formSubmitEvent)='bloodGroupFormSubmitEvent($event)'
+  (formObjectEvent)='bloodGroupFormObjectEvent($event)'
+  [formSubmitOutside]='formBloodGroupSubmit$'
+>
+</ihrms-dynamic-form>
+<section ihrmsUtil textAlign="right">
+  <button mat-raised-button color='primary' class='small-button'
+          (click)='onBloodGroupSaveEvent($event)'>{{bloodGroupBtnText + ' Blood Group' | titlecase}}</button>
+</section>
+<!--./Form-->
+
+
+<!--Grid-->
+<ihrms-grid
+  *ngIf='bloodGroupsData'
+  ihrmsUtil paddingTop='20'
+  style='height: auto'
+  [height]="200"
+  [isMultiChartCard]="true"
+  [columnFit]='bloodGroupsData.columnFit'
+  [title]='bloodGroupsData.title'
+  [viewAll]='bloodGroupsData.viewAll'
+  [rowData]='bloodGroupsData.gridData?.rowData'
+  [columnDefs]='bloodGroupsData.gridData?.columnDefs'
+  [pagination]="bloodGroupsData.pagination"
+  [paginationPageSize]="bloodGroupsData.paginationPageSize"
+  [paginationAutoPageSize]="bloodGroupsData.paginationAutoPageSize"
+  [updateGridFromOutside]="bloodGroupsData.gridData?.updateGridFromOutside"
+  (onGridReadyOut)='onBloodGroupsGridReady($event)'
+>
+</ihrms-grid>
+<!--Grid-->

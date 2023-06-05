@@ -1,0 +1,57 @@
+<section ihrmsUtil ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <h2 class="bold light-blue-head ml-m-10">Professional Tax</h2>
+  <p>This tax is levied on an employee’s income by the State Government. Tax slabs differ in each state.</p>
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="controls$ | async"
+    [flex]='24'
+    [flexGap]='15'
+    [paddingBottomCust]="'5'"
+    [flexAlignStart]='true'
+    (formSubmitEvent)='formSubmitEvent($event)'
+    (formObjectEvent)='formObjectEvent($event)'
+    [formSubmitOutside]='formSubmit$'
+  >
+  </ihrms-dynamic-form>
+  <!--./Form-->
+
+  <!--Grid-->
+  <ihrms-grid
+    *ngIf='gridData'
+    ihrmsUtil paddingTop='20'
+    style='height: auto'
+    [height]="200"
+    [isMultiChartCard]="true"
+    [addRemoveRowButtons]='true'
+    [title]='gridData.title'
+    [viewAll]='gridData.viewAll'
+    [columnFit]='gridData.columnFit'
+    [rowData]='gridData.gridData?.rowData'
+    [columnDefs]='gridData.gridData?.columnDefs'
+    [updateGridFromOutside]="gridData.gridData?.updateGridFromOutside"
+    (onGridReadyOut)='onGridReady($event)'
+    (onClickHandler)='onClickHandler($event)'
+  >
+  </ihrms-grid>
+  <!--Grid-->
+
+  <section ihrmsUtil paddingTop='10' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onAddEvent($event)'>Save Changes</button>
+  </section>
+</section>
+
+<ng-template #confirmDialog>
+  <mat-card ihrmsUtil padding='0' class='ihrms-dialog'>
+    <mat-card-header>
+      <mat-card-title>Are you sure?</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      Pl confirm to proceed.
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions fxLayout='row' fxLayoutAlign='end start'>
+      <button type="button" mat-button mat-raised-button color='default' class='mid-button' [mat-dialog-close]='0'>Cancel</button>
+      <button type="button" mat-button mat-raised-button color='primary' class='mid-button' [mat-dialog-close]='1'>Confirm</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>

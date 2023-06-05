@@ -1,0 +1,51 @@
+<mat-card class='mat-elevation-z10 nopadd' ihrmsUtil heightCalc='calc(100% + 20px)' #outerElement>
+  <mat-card-content ihrmsUtil height='100' padding="0">
+
+    <mat-tab-group class='vertical-tabs' ihrmsUtil height='100' [@.disabled]="true" (selectedTabChange)="onTabChanged($event)">
+      <mat-tab label="Leave Type Setting">
+        <section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10" *ngIf='selectedIndex === 0'>
+          <!--Form-->
+          <ihrms-dynamic-form
+            [controls]="leaveSettingsControls$ | async"
+            [flex]='24'
+            [flexGap]='12'
+            [paddingBottomCust]="'5'"
+            [flexAlignStart]='true'
+            (formSubmitEvent)='leaveSettingsFormSubmitEvent($event)'
+            (formObjectEvent)='leaveSettingsFormObjectEvent($event)'
+            [formSubmitOutside]='formLeaveSettingsSubmit$'
+            [formInvalidControls]='formInvalidControls$'
+          >
+          </ihrms-dynamic-form>
+          <section ihrmsUtil textAlign="right">
+            <button mat-raised-button color='primary' class='small-button' (click)='onLeaveSettingsSaveEvent($event)'>{{leaveTypeBtnText | titlecase}} Leave Type</button>
+          </section>
+          <!--./Form-->
+
+          <!--Grid-->
+          <ihrms-grid
+            *ngIf='leaveTypesData'
+            ihrmsUtil paddingTop='20'
+            style='height: auto'
+            [height]='250'
+            [isMultiChartCard]="true"
+            [columnFit]='leaveTypesData.columnFit'
+            [title]='leaveTypesData.title'
+            [viewAll]='leaveTypesData.viewAll'
+            [rowData]='leaveTypesData.gridData?.rowData'
+            [columnDefs]='leaveTypesData.gridData?.columnDefs'
+            [pagination]="leaveTypesData.pagination"
+            [paginationPageSize]="leaveTypesData.paginationPageSize"
+            [paginationAutoPageSize]="leaveTypesData.paginationAutoPageSize"
+            [updateGridFromOutside]="leaveTypesData.gridData?.updateGridFromOutside"
+            (onGridReadyOut)='onLeaveTypesGridReady($event)'
+          >
+          </ihrms-grid>
+          <!--Grid-->
+
+        </section>
+      </mat-tab>
+    </mat-tab-group>
+
+  </mat-card-content>
+</mat-card>

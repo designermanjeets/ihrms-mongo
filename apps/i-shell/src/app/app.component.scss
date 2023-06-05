@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  height: 100%;
+}
+::ng-deep {
+   .ng-sidebar--closed.ng-sidebar--docked {
+     //transform: translateX(-100%) translateX(85px);
+     //transition: width 2s linear 1s;
+   }
+   .ng-sidebar__content > div:first-child {
+     display: inline;
+   }
+ }
+

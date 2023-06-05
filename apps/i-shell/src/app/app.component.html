@@ -1,0 +1,62 @@
+<ng-container *ngIf='isLoggedIn; else loggedInTemplate'>
+  <!-- Container for sidebar(s) + page content -->
+  <ng-sidebar-container [class.vh-close]='!opened' [class.vh-open]='opened'>
+    <!-- A sidebar -->
+    <ng-sidebar
+      (mouseenter)="enter()"
+      (mouseleave)="leave()"
+      #sidebarMenu
+      [(opened)]='opened'
+      [mode]=mode
+      [dock]=dock
+      [dockedSize]='dockedSize'
+    >
+      <ihrms-sidebar
+        [opened]='opened'
+        [navItems]='navItems'
+        [sideBarWidth]='opened ? sideBarWidth : toNumber(dockedSize)'
+        (navItemClick)='onNavItemClick($event)'
+        (navItemSelectedEvent)='navItemSelectedEvent($event)'
+      >
+      </ihrms-sidebar>
+    </ng-sidebar>
+
+    <ng-sidebar
+      #sidebarNotification
+      [(opened)]='openedNotification'
+      [position]="'right'"
+      [showBackdrop]='true'
+      [closeOnClickOutside]='false'
+      [closeOnClickBackdrop]='true'
+    >
+      <ihrms-company-notifications
+        [config]='notificationConfig'
+        [sideBarWidth]='notificationBarWidth'
+        [notificationItems]='notificationItems'
+        (closeNotificationEvent)='toggleNotification()'
+      >
+      </ihrms-company-notifications>
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content> <!-- [ngStyle]="{ 'padding-left.px': sideBarWidth }"-->
+      <ihrms-navbar
+        [profileMenuItems]='profileMenuItems'
+        (toggleSidebar)=toggleSidebar($event)
+        (toggleNotification)=toggleNotification()
+        (profileClickEvent)=profileClickEvent($event)
+        (orgClickEvent)=orgClickEvent($event)
+        (dashboardClickEvent)=dashboardClickEvent($event)
+      ></ihrms-navbar>
+
+      <!--All the Routes After Login-->
+      <router-outlet></router-outlet>
+      <!--./All the Routes After Login-->
+    </div>
+  </ng-sidebar-container>
+</ng-container>
+
+<ng-template #loggedInTemplate>
+  <router-outlet></router-outlet>
+</ng-template>
+<ngx-ui-loader [loaderId]="'global_loader'"></ngx-ui-loader>

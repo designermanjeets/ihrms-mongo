@@ -1,0 +1,18 @@
+::ng-deep {
+    ihrms-create-employee-wrap {
+        .mat-mdc-card {
+            padding: 0 !important;
+            margin: 10px !important;
+            .mat-mdc-card-content {
+                padding: 0;
+                max-height: calc(100vh - 50px);
+                .mat-horizontal-content-container {
+                    padding: 10px;
+                }
+            }
+        }
+        .mat-step-text-label {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+<section ihrmsUtil paddingLeft="10" paddingRight="10" paddingBottom="10">
+  <!--Form-->
+  <ihrms-dynamic-form
+    [controls]="salaryStructureControls$ | async"
+    [flex]='24'
+    [flexGap]='10'
+    [flexAlignStart]="true"
+    [paddingBottomCust]="'5'"
+    (formSubmitEvent)='formSalaryStructureSubmitEvent($event)'
+    (formObjectEvent)='formSalaryStructureObjectEvent($event)'
+    (formClickEvent)="formSalaryStructureClickEvent($event)"
+    [formSubmitOutside]='formSalaryStructureSubmit$'
+  >
+  </ihrms-dynamic-form>
+  <section ihrmsUtil paddingTop='20' textAlign="right">
+    <button mat-raised-button color='primary' class='small-button' (click)='onSalaryStructureAddEvent($event)'>{{salaryStructureBtnText}}</button>
+  </section>
+  <!--./Form-->
+  <!--Grid-->
+  <ihrms-grid
+    *ngIf='salaryStructureChartData'
+    ihrmsUtil paddingTop='20'
+    [height]='500'
+    [isMultiChartCard]="true"
+    [columnFit]='salaryStructureChartData.columnFit'
+    [title]='salaryStructureChartData.title'
+    [viewAll]='salaryStructureChartData.viewAll'
+    [rowData]='salaryStructureChartData.gridData?.rowData'
+    [columnDefs]='salaryStructureChartData.gridData?.columnDefs'
+    [pagination]="salaryStructureChartData.pagination"
+    [paginationPageSize]="salaryStructureChartData.paginationPageSize"
+    [paginationAutoPageSize]="salaryStructureChartData.paginationAutoPageSize"
+    [updateGridFromOutside]="salaryStructureChartData.gridData?.updateGridFromOutside"
+    (onGridReadyOut)='onSalaryStructureGridReady($event)'
+  >
+  </ihrms-grid>
+  <!--Grid-->
+</section>

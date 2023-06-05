@@ -1,0 +1,58 @@
+<ihrms-gridster
+  [gridsterOptions]=gridsterOptions
+  [dashboardItems]=dashboardItems
+  [resize$]='gridResize'
+>
+</ihrms-gridster>
+
+<!-- Dialog template -->
+<ng-template #preUploadDialog let-data>
+  <h2 *ngIf="data.dups.length || data.DBUsers.length || data.invalids.length; else correctTitle" matDialogTitle>Kindly correct below records and upload again.</h2>
+  <ng-template #correctTitle>
+    <h2>
+      Your Data Verified, go ahead and Upload.
+    </h2>
+  </ng-template>
+  <mat-dialog-content ihrmsUtil>
+    <ng-container *ngFor='let d of data | keyvalue; index as i'>
+      <ng-container *ngIf="d.key === 'dups' || d.key === 'invalids' || d.key === 'DBUsers'">
+        <h4 ihrmsUtil marginBottom="0" class="bold"  *ngIf='getRows(d.value).length'>
+          
+          {{ d.key === 'dups' ? "Duplicate Records" : d.key === 'invalids' ? "Records with missing data" : d.key === 'DBUsers' ? "Records already exists in Database": ''}}
+        </h4>      
+        <!--Grid-->
+        <ihrms-grid
+          *ngIf='getRows(d.value).length'
+          ihrmsUtil
+          marginBottom="20"
+          style='height: auto'
+          [height]='200'
+          [isMultiChartCard]="true"
+          [columnFit]='preUploadData.columnFit'
+          [title]='preUploadData.title'
+          [rowData]='getRows(d.value)'
+          [rowSelection]="'multiple'"
+          [columnDefs]='preUploadData.gridData?.columnDefs'
+          [pagination]="preUploadData.pagination"
+          [paginationPageSize]="preUploadData.paginationPageSize"
+          [paginationAutoPageSize]="preUploadData.paginationAutoPageSize"
+          [updateGridFromOutside]="preUploadData.gridData?.updateGridFromOutside"
+          (onGridReadyOut)='preUploadGridReady($event, i)'
+        >
+        </ihrms-grid>
+        <!--Grid-->
+      </ng-container>
+    </ng-container>
+    <div *ngIf="!data.dups.length && !data.DBUsers.length && !data.invalids.length">
+      <h3 style="font-size: large;">No Error Content</h3>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <h4 *ngIf="data.dups.length || data.DBUsers.length || data.invalids.length" ihrmsUtil marginBottom="0" class="bold">
+       Please Verify Data 
+        </h4> 
+     <button *ngIf="!data.dups.length && !data.DBUsers.length && !data.invalids.length" mat-raised-button (click)='UploadUser($event)' color="primary" class='mid-button'>Upload</button>
+    <button mat-raised-button [mat-dialog-close]="0" color="primary" class='mid-button'>Close</button>
+  </mat-dialog-actions>
+</ng-template>
+<!-- Dialog template #2 -->

@@ -1,0 +1,169 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin components-theme($theme) {
+  // Get the color config from the theme.
+  $color-config: mat.get-color-config($theme);
+
+  // Get the primary color palette from the color-config.
+  $primary-palette: map.get($color-config, 'primary');
+  $accent-palette: map.get($color-config, 'accent');
+
+  .mat-mdc-list-base .mdc-list-item .mdc-list-item-content {
+    width: 100%;
+  }
+
+  // Task lists
+  .task-head {
+    padding:10px;
+    margin: 0 -10px;
+    background-color: mat.get-color-from-palette($primary-palette, 50);
+  }
+  .task-date {
+    font-size: 13px;
+  }
+  .task-info {
+    color: mat.get-color-from-palette($primary-palette, 500);
+    > span { font-size: 12px; display: block }
+  }
+  .task-time {
+    background-color: mat.get-color-from-palette($primary-palette, 50);
+    border-radius: 20px;
+    align-self: center;
+    padding: 4px 0;
+    font-size: 13px;
+    text-align: center;
+    max-width: 100px;
+  }
+  .task-action {
+    text-align: center;
+  }
+
+  // Notification Sidebar
+  .notification-sidebar {
+    background-color: transparent;
+    &.notification-sidebar:not(.flatInsideCard) {
+      background-color: mat.get-color-from-palette($primary-palette, 50);
+    }
+    &.flatInsideCard {
+      background-color: white;
+    }
+    p {
+      color: black;
+      font-size: 13px;
+    }
+    h1 {
+      text-align: center;
+      font-size: 17px;
+      color: mat.get-color-from-palette($primary-palette, 600);
+      margin-top: -35px;
+    }
+    .view-all {
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      color: white !important;
+      font-size: 14px;
+    }
+
+    .mat-card {
+      border-radius: 20px;
+      margin: 20px 10px;
+      .mat-mdc-card-title {
+        color: mat.get-color-from-palette($primary-palette, 700);
+        font-weight: 600;
+      }
+      .mat-mdc-card-subtitle {
+        color: mat.get-color-from-palette($primary-palette, 400);
+      }
+      .header-image {
+        //background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+        background-size: cover;
+      }
+    }
+    &.flatInsideCard {
+      .scrollable {
+        margin-top: 15px;
+        padding-left: 0;
+      }
+      .mat-card {
+        background-color: transparent;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        .mat-divider-horizontal {
+          position: static;
+        }
+      }
+    }
+  }
+
+  // IHRMS-Dialog
+
+  .ihrms-dialog-overlay-panel {
+    width: 60vw !important;
+    &.confirm-dialog-panel {
+      width: auto !important;
+      .ihrms-dialog.mat-card .mat-mdc-card-content {
+        min-height: 50px;
+      }
+    }
+    &.payslipClass {
+      max-width: 100vw !important;
+      width: 100vw !important;
+    }
+    .mat-dialog-container {
+      padding: 0;
+      border-radius: 2px;
+      background: transparent;
+      > *:first-child {
+        display: block;
+      }
+    }
+  }
+
+  .ihrms-dialog.mat-card {
+    border-radius: 2px;
+    overflow: hidden;
+    background: white;
+    .mat-mdc-card-header {
+      background-color: mat.get-color-from-palette($primary-palette, 700);
+      color: white;
+      border-radius: 2px 2px 0 0;
+      padding: 10px 6px 0px;
+      text-align: center;
+      .mat-mdc-card-title {
+        font-size: 18px;
+      }
+    }
+    .mat-mdc-card-content {
+      padding: 20px;
+      min-height: 100px;
+      max-height: 35vw;
+      overflow: auto;
+      margin-bottom: 0;
+
+      /* Works on Chrome, Edge, and Safari */
+      &::-webkit-scrollbar {
+        height: 10px;
+        width: 10px;
+        border-radius: 100%;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .4);
+        border-radius: 20px;
+      }
+
+    }
+    .mat-card-actions {
+      padding: 15px !important;
+      margin: 0;
+      //background-color: white;
+      .mat-mdc-raised-button.mid-button {
+        min-width: 100px;
+      }
+    }
+  }
+
+}

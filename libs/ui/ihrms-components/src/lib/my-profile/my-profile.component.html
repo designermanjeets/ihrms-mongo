@@ -1,0 +1,144 @@
+<section [ngClass]="{ 'editProfile': dialogData }">
+  <mat-horizontal-stepper [@.disabled]="true" #stepper [linear]="true" class='disableMatHeaderSteps' [ngClass]="{ 'dialogData': dialogData }">
+    <mat-step errorMessage="Form Incomplete."><!-- [stepControl]="formOfficialInfo" -->
+      <ng-template matStepLabel>{{'OFFICIAL DETAILS' | uppercase}}</ng-template>
+      <ihrms-dynamic-form
+        *ngIf="stepper.selectedIndex === 0 && officialControls$"
+        [controls]="officialControls$ | async"
+        [flex]='22'
+        [flexGap]='0'
+        [stepper]='stepper'
+        [stepperNext]='true'
+        [stepperClose]='true'
+        [paddingBottomCust]="'0'"
+        [readonly]='readOnlyOfficial'
+        [patchValue]="patchValueOfficial"
+        (formSubmitEvent)='formSubmitEvent($event, formPersonalInfo)'
+        (formObjectEvent)='formOfficialInfoObjectEvent($event)'
+        (stepperCancelEvent)='formCancelEvent($event)'
+        [formSubmitOutside]='formOfficialInfoSubmit$'
+      >
+      </ihrms-dynamic-form>
+    </mat-step>
+    <mat-step errorMessage="Form Incomplete."><!-- [stepControl]="formPersonalInfo"-->
+      <ng-template matStepLabel>{{'PERSONAL DETAILS' | uppercase}}</ng-template>
+      <ihrms-dynamic-form
+        *ngIf="stepper.selectedIndex === 1"
+        [controls]="personalControls$ | async"
+        [flex]='22'
+        [flexGap]='0'
+        [stepper]='stepper'
+        [stepperNext]='true'
+        [stepperClose]='true'
+        [paddingBottomCust]="'0'"
+        [stepperPrevious]='true'
+        [readonly]='readOnlyPersonal'
+        [patchValue]="patchValuePersonal"
+        (formSubmitEvent)='formSubmitEvent($event, formPersonalInfo)'
+        (formObjectEvent)='formPersonalObjectEvent($event)'
+        (stepperCancelEvent)='formCancelEvent($event)'
+        [formSubmitOutside]='formPersonalInfoSubmit$'
+      >
+      </ihrms-dynamic-form>
+    </mat-step>
+    <mat-step errorMessage="Form Incomplete."><!-- [stepControl]="formQualificationInfo"-->
+      <ng-template matStepLabel>{{'Qualification' | uppercase}}</ng-template>
+      <!--<ihrms-dynamic-form class='noValidation'-->
+      <ihrms-dynamic-form
+        *ngIf="stepper.selectedIndex === 2"
+        [controls]="qualificationsControls$ | async"
+        [flex]='32'
+        [flexGap]='0'
+        [stepper]='stepper'
+        [stepperNext]='true'
+        [stepperClose]='true'
+        [paddingBottomCust]="'0'"
+        [stepperPrevious]='true'
+        [update]="updateQuali$"
+        [action]="employeeQualiBtnText"
+        [hideForm]="readOnlyQualification"
+        [readonly]='readOnlyQualification'
+        [patchValue]="patchValueQualification"
+        (formSubmitEvent)='formSubmitEvent($event, formQualificationInfo)'
+        (formObjectEvent)='formQualificationObjectEvent($event)'
+        (formClickEvent)='formAddMoreQualiEvent($event)'
+        (stepperCancelEvent)='formCancelEvent($event)'
+        [formSubmitOutside]='formQualificationInfoSubmit$'
+      >
+
+        <!--Grid-->
+        <ihrms-grid
+          class="ihrms-grid"
+          *ngIf='employeeQualiData'
+          ihrmsUtil paddingTop='20'
+          [height]="350"
+          [isMultiChartCard]="true"
+          [columnFit]='employeeQualiData.columnFit'
+          [title]='employeeQualiData.title'
+          [viewAll]='employeeQualiData.viewAll'
+          [rowData]='employeeQualiData.gridData?.rowData'
+          [columnDefs]='employeeQualiData.gridData?.columnDefs'
+          [pagination]="employeeQualiData.pagination"
+          [paginationPageSize]="employeeQualiData.paginationPageSize"
+          [paginationAutoPageSize]="employeeQualiData.paginationAutoPageSize"
+          [updateGridFromOutside]="employeeQualiData.gridData?.updateGridFromOutside"
+          (onGridReadyOut)='onEmployeeQualiGridReady($event)'
+        >
+        </ihrms-grid>
+        <!--Grid-->
+
+      </ihrms-dynamic-form>
+    </mat-step>
+    <mat-step errorMessage="Form Incomplete."><!-- [stepControl]="formExperienceInfo"-->
+      <ng-template matStepLabel>{{'Experience' | uppercase}}</ng-template>
+      <ihrms-dynamic-form
+        *ngIf="stepper.selectedIndex === 3"
+        [controls]="experienceControls$ | async"
+        [flex]='32'
+        [flexGap]='0'
+        [stepper]='stepper'
+        [stepperReset]='!readOnlyExperience'
+        [paddingBottomCust]="'0'"
+        [stepperSubmit]='!readOnlyExperience'
+        [stepperClose]='true'
+        [stepperPrevious]='true'
+        [dynamicControls]="true"
+        [update]="updateExp$"
+        [action]="employeeExpBtnText"
+        [hideForm]="readOnlyExperience"
+        [readonly]='readOnlyExperience'
+        [patchValue]="patchValueExperience"
+        (formSubmitEvent)='formSubmitEvent($event, formPersonalInfo)'
+        (formObjectEvent)='formExperienceObjectEvent($event)'
+        (formClickEvent)='formAddMoreExpEvent($event)'
+        (stepperSubmitEvent)='stepperSubmitEvent($event)'
+        (stepperCancelEvent)='formCancelEvent($event)'
+        [formSubmitOutside]='formExperienceInfoSubmit$'
+      >
+
+        <!--Grid-->
+        <ihrms-grid
+          class="ihrms-grid"
+          *ngIf='employeeExpData'
+          ihrmsUtil paddingTop='20'
+          [height]="350"
+          [isMultiChartCard]="true"
+          [columnFit]='employeeExpData.columnFit'
+          [title]='employeeExpData.title'
+          [viewAll]='employeeExpData.viewAll'
+          [rowData]='employeeExpData.gridData?.rowData'
+          [columnDefs]='employeeExpData.gridData?.columnDefs'
+          [pagination]="employeeExpData.pagination"
+          [paginationPageSize]="employeeExpData.paginationPageSize"
+          [paginationAutoPageSize]="employeeExpData.paginationAutoPageSize"
+          [updateGridFromOutside]="employeeExpData.gridData?.updateGridFromOutside"
+          (onGridReadyOut)='onEmployeeExpGridReady($event)'
+        >
+        </ihrms-grid>
+        <!--Grid-->
+
+      </ihrms-dynamic-form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</section>
+<ngx-ui-loader [loaderId]="profileLoader"></ngx-ui-loader>

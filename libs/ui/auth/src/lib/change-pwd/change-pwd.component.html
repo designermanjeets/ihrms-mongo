@@ -1,0 +1,47 @@
+<section fxLayout='row' fxFill>
+    <section fxFlex="100" fxLayout='row wrap' fxLayoutAlign="space-around center" class='login-panel'>
+      <p class='ihrms-logo'>
+        <img src="/assets/ihrms-logo.jpeg" alt="hrms-logo">
+      </p>
+      <h1 fxLayoutAlign='center center' fxFlex='100' class='mat-headline' style='margin-bottom: 40px'>
+        {{ 'Change Password' }}
+      </h1>
+
+      <form fxFlex="60" [formGroup]="loginForm" (ngSubmit)="onSubmit()" fxLayout='column' fxLayoutGap='25px' class="changeform">
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'eCode' }}</mat-label>
+          <input matInput formControlName="eCode">
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'Current Password' }}</mat-label>
+          <input matInput formControlName="oldPassword" [type]="hidePassword1 ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix (click)="hidePassword1 = !hidePassword1" [attr.aria-label]="'hidePassword password'" [attr.aria-pressed]="hidePassword1">
+            <mat-icon>{{hidePassword1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'New Password' }}</mat-label>
+          <input matInput formControlName="newPassword" [type]="hidePassword2 ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'hidePassword password'" [attr.aria-pressed]="hidePassword2">
+            <mat-icon>{{hidePassword2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <mat-label>{{ 'confirm New Password' }}</mat-label>
+          <input matInput formControlName="confirmNewPassword" [type]="hidePassword2 ? 'password' : 'text'">
+          <button type="button" mat-icon-button matSuffix (click)="hidePassword2 = !hidePassword2" [attr.aria-label]="'hidePassword password'" [attr.aria-pressed]="hidePassword2">
+            <mat-icon>{{hidePassword2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <small *ngIf="!isPasswordMatched" class="passworderror">New Password and Confirm Password Should be Same.</small>
+        
+        <div fxLayoutAlign='space-between center' fxLayout='row'>
+          <button fxFlex='100' mat-raised-button color="primary">Change Password</button>
+        </div>
+      </form>
+  </section>
+</section>
+<ngx-ui-loader [loaderId]="randomLoader"></ngx-ui-loader>
