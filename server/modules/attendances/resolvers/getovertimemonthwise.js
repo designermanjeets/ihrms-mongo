@@ -634,7 +634,7 @@ const getOvertimeMonthWise = async (_, args, { me, tenantid }) =>
             }
         }
       ])
-      ).option({ allowDiskUse: true }).exec(async function (e, d) {
+      ).allowDiskUse(true).option({ allowDiskUse: true }).exec(async function (e, d) {
         if (e) return reject(new Error(e));
         if(me?.user?.username !== 'gonngod') {
           d = d.filter(res => res.username !== 'gonngod');

@@ -71,7 +71,7 @@ const getAttendanceRequestsByDayWise = async (_, args, { me, tenantid })  => new
           }
         },
     ])
-    .exec(async function ( e, d ) {
+    .allowDiskUse(true).option({ allowDiskUse: true }).exec(async function ( e, d ) {
         if (e) return reject(new Error('Unable to Fetch Recent Attendance Request!'));
         resolve(d)        
     });

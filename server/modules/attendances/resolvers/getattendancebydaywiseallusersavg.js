@@ -297,7 +297,7 @@ const getAttendancesByDayWiseAllUsersAvg = async (_, args, { me, tenantid })  =>
             }
         }
     ])
-    .exec(async function ( e, d ) {
+    .allowDiskUse(true).option({ allowDiskUse: true }).exec(async function ( e, d ) {
         if (e) return reject(new Error(e));
         resolve(d)        
     });
